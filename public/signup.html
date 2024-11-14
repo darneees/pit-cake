@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description"
+            content="PitCake - receitas, cupcakes e muitas outras delicias." />
+        <meta name="author" content="PitCake" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login - Pit Cake</title>
+        <!-- import css -->
+        <link rel="stylesheet" href="../src/styles/signup/signup.css">
+    </head>
+    <body>
+
+        <main>
+            <form id="loginForm">
+                <label for="username" class="input">
+                    Nome de usuário
+                    <input type="text" placeholder="Nome de usuário" id="username"
+                        autocomplete="off" required>
+                </label>
+
+                <label for="email" class="input">
+                    E-mail
+                    <input type="email" placeholder="email@gmail.com" id="email"
+                        autocomplete="off" required>
+                </label>
+
+                <label for="password" class="input">
+                    crie uma senha
+                    <input type="password" placeholder="senha" id="password"
+                        autocomplete="off" required>
+                </label>
+
+                <label for="password" class="input">
+                    confirmação de senha
+                    <input type="password" placeholder="senha" id="passwordAgain"
+                        autocomplete="off" required>
+                </label>
+
+                <!-- <label for="question" class="input">
+                    Resposta de segurança
+                    <input type="password" placeholder="?" id="question"
+                        autocomplete="off" required>
+                </label> -->
+
+                <label for="accept" class="accept">
+                    <input type="checkbox" id="accept" required>
+                    Aceito os termos de uso e a politica de privacidade
+                </label>
+
+                <button type="submit" class="button-access" onclick="register()">Criar conta</button>
+            </form>
+
+            <a href="index.html" rel="noopener noreferrer"
+            class="button-back">Voltar</a>
+        </main>
+
+        <script src="scripts/signup.js"></script>
+    </body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description"
+            content="PitCake - receitas, cupcakes e muitas outras delicias." />
+        <meta name="author" content="PitCake" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Login - Pit Cake</title>
+        <!-- import css -->
+        <link rel="stylesheet" href="../src/styles/login/login.css">
+    </head>
+    <body>
+
+        <article id="user-message-error">
+            <p>Usuário não encontrado</p>
+            <ion-icon name="alert-circle-outline"></ion-icon>
+        </article>
+
+        <main>
+            <form id="loginForm">
+                <!-- email -->
+                <label for="email">
+                    Email
+                    <input type="email"
+                        placeholder="email@gmail.com" id="email"
+                        autocomplete="off"
+                        onchange="onChangeEmail()" />
+                    <span class="error" id="email-required-error">Campo de email
+                        é obrigatótio.</span>
+                    <span class="error" id="email-invalid">Este email é
+                        invalido.</span>
+                </label>
+
+                <!-- password -->
+                <label for="password">
+                    Senha
+                    <input type="password"
+                        placeholder="Senha" id="password"
+                        autocomplete="off"
+                        onchange="onChangePassword()" />
+                    <span class="error" id="password-required-error">Campo de
+                        senha é obrigatótio.</span>
+                </label>
+
+                <!-- access -->
+                <button type="button" class="button-access" id="login-button"
+                    disabled="true"
+                    onclick="login()">Entrar</button>
+
+                <!-- recover -->
+                <button type="button" class="button-recover"
+                    id="recover-password-button" disabled="true">Recuperar
+                    senha</button>
+            </form>
+
+            <a href="index.html" rel="noopener noreferrer"
+                class="button-back">Voltar</a>
+        </main>
+
+        <script src="scripts/login.js"></script>
+        <script type="module"
+            src="../src/services/firebase/firebaseConfig.js"></script>
+        <script src="scripts/Validations.js"></script>
+        <script src="scripts/Validations.js"></script>
+        <!-- import icon -->
+        <script type="module"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+        <!-- import firebase CDN -->
+        <script
+            src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+        <script
+            src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+    </body>
+</html>

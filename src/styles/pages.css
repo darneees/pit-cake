@@ -1,0 +1,82 @@
+/* import font */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Outfit", sans-serif;
+}
+
+:root {
+    --primary-color: #f5f5f5;
+    --secondary-color: #242424;
+    --tertiary-color: #8D56C7;
+    --quaternary-color: #69369F;
+    --gradient-color: linear-gradient(120deg, #A5F491, #3C8C28);
+}
+
+body {
+    background: var(--gradient-color);
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5rem;
+    height: 100%;
+    width: 100%;
+}
+
+picture {
+    width: 140px;
+    height: auto;
+}
+
+picture img {
+    width: 100%;
+    height: 100%;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.login-button a ,
+.sign-button a {
+    color: var(--primary-color);
+    background: var(--tertiary-color);
+    position: relative;
+    text-decoration: none;
+    padding: 1rem 4rem;
+    border-radius: 3rem;
+    font-size: 1.1rem;
+    font-weight: 400;
+    transition: 0.3s;
+}
+
+.login-button a {
+    padding: 1rem 5.2rem;
+}
+
+.login-button a:hover ,
+.sign-button a:hover {
+    background: var(--quaternary-color);
+}
+
+.login-button a img ,
+.sign-button a img {
+    position: absolute;
+    top: -1.2rem;
+    left: -1.5rem;
+    width: 80px;
+}
