@@ -13,49 +13,162 @@
     </head>
     <body>
 
+        <article id="privacy-modal">
+            <button type="button" id="close-privacy-modal" class="close">
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+            <h1>Política de Privacidade</h1>
+
+            <p>Nós, da PitCake, estamos comprometidos com a proteção e a
+                privacidade das informações pessoais de nossos usuários. Esta
+                Política de Privacidade descreve como coletamos, usamos e
+                protegemos seus dados ao utilizar nossos serviços.</p>
+
+            <details>
+                <summary>1. Coleta de Informações</summary>
+                <p>Durante o uso do nosso sistema, podemos coletar as seguintes
+                    informações:
+
+                    Dados pessoais fornecidos, como nome, e-mail e informações
+                    de
+                    contato.
+                    Informações relacionadas ao uso da plataforma, como
+                    preferências
+                    e interações.</p>
+            </details>
+
+            <details>
+                <summary>2. Uso das Informações</summary>
+                <p>As informações coletadas são utilizadas para:
+
+                    Melhorar a experiência do usuário.
+                    Personalizar conteúdos e recomendações.
+                    Enviar comunicações relevantes, como notificações e
+                    atualizações.</p>
+            </details>
+
+            <details>
+                <summary>3. Compartilhamento de Dados</summary>
+                <p>Garantimos que suas informações pessoais não serão vendidas,
+                    alugadas
+                    ou compartilhadas com terceiros, exceto quando necessário
+                    para:
+
+                    Cumprir obrigações legais.
+                    Proteger os direitos e a segurança dos usuários.</p>
+            </details>
+
+            <details>
+                <summary>4. Segurança</summary>
+                <p>Adotamos medidas rigorosas para proteger seus dados contra
+                    acessos não autorizados, uso indevido ou alterações. No
+                    entanto,
+                    é importante lembrar que nenhum sistema é completamente
+                    seguro,
+                    e incentivamos nossos usuários a protegerem suas contas.</p>
+            </details>
+
+            <details>
+                <summary>5. Seus Direitos</summary>
+                <p>Você tem o direito de:
+
+                    Acessar suas informações pessoais.
+                    Corrigir dados incorretos.
+                    Solicitar a exclusão de seus dados, quando aplicável.</p>
+            </details>
+
+            <details>
+                <summary>6. Alterações na Política</summary>
+                <p>Podemos atualizar esta Política de Privacidade
+                    periodicamente.
+                    Recomendamos revisar este documento regularmente para estar
+                    ciente de possíveis alterações.</p>
+            </details>
+
+            <details>
+                <summary>7. Contato</summary>
+                <p>Caso tenha dúvidas sobre esta Política de Privacidade ou
+                    sobre
+                    como utilizamos suas informações, entre em contato conosco
+                    pelo
+                    e-mail: suporte@pitcake.com.
+                </p>
+            </details>
+        </article>
+
         <main>
             <form id="loginForm">
-                <label for="username" class="input">
+                <!-- <label for="username" class="input">
                     Nome de usuário
                     <input type="text" placeholder="Nome de usuário"
                         id="username"
                         autocomplete="off" required maxlength="15"
                         oninput="updateCharacterCount()">
                     <span id="char-count">0/15</span>
-                </label>
+                </label> -->
 
                 <label for="email" class="input">
                     E-mail
                     <input type="email" placeholder="email@gmail.com" id="email"
-                        autocomplete="off" required>
+                        autocomplete="off" onchange="onChangeEmail()">
+                    <span class="error" id="email-required-error">Campo de email
+                        é obrigatótio.</span>
+                    <span class="error" id="email-invalid">Este email é
+                        invalido.</span>
                 </label>
 
                 <label for="password" class="input">
-                    crie uma senha
+                    Senha
                     <input type="password" placeholder="senha" id="password"
-                        autocomplete="off" required>
+                        autocomplete="off" onchange="onChangePassword()"
+                        maxlength="13"
+                        oninput="updateCharacterCount(this)">
+                    <ion-icon id="password-icon" name="eye-off-outline"
+                        onclick="showPassword()"></ion-icon>
+                    <span class="error" id="password-required-error">Campo de
+                        senha é obrigatório.</span>
+                    <span class="error" id="password-min-length-error">Senha
+                        deve ter pelo menos 8 caracteres.</span>
+                    <span class="char-count">0/13</span>
                 </label>
 
-                <label for="password" class="input">
-                    confirmação de senha
+                <label for="confirmPassword" class="input">
+                    Confirmar senha
                     <input type="password" placeholder="senha"
-                        id="passwordAgain"
-                        autocomplete="off" required>
+                        id="confirmPassword"
+                        autocomplete="off" onchange="onChangeConfirmPassword()"
+                        onchange="onChangePassword()"
+                        maxlength="13"
+                        oninput="updateCharacterCount(this)">
+                    <span class="error" id="password-doesnt-match-error">As
+                        senhas devem ser iguais.</span>
+                    <span class="char-count">0/13</span>
                 </label>
 
-                <label for="accept" class="accept">
-                    <input type="checkbox" id="accept" required>
-                    Aceito os termos de uso e a politica de privacidade
-                </label>
+                <button type="button" class="accept" id="open-privacy-modal">
+                    Termos e politica de privacidade.
+                </button>
 
-                <button type="submit" class="button-access"
-                    onclick="register()">Criar conta</button>
+                <button type="submit" id="create-button" class="button-access"
+                    disabled="true">Criar conta</button>
             </form>
 
             <a href="../index.html" rel="noopener noreferrer"
                 class="button-back">Voltar</a>
         </main>
 
+        <!-- import icon -->
+        <script type="module"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <!-- import js -->
         <script src="scripts/signup.js"></script>
+        <script src="scripts/Validations.js"></script>
+        <script type="module"
+            src="../src/services/firebase/firebaseConfig.js"></script>
+        <!-- import firebase CDN -->
+        <script
+            src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+        <script
+            src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
     </body>
 </html>

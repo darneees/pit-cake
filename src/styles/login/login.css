@@ -159,6 +159,9 @@ label input::placeholder {
     color: var(--quinary-color);
     opacity: .6;
 }
+label input:focus {
+    outline: .1rem solid var(--tertiary-color);
+}
 
 label ion-icon {
     color: var(--quaternary-color);

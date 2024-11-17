@@ -22,15 +22,72 @@
 
 body {
     background: var(--gradient-color);
+    position: relative;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
     width: 100%;
-
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1;
+}
+
+#privacy-modal {
+    background: var(--primary-color);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 5rem 3rem;
+    z-index: 3;
+    overflow-y: auto;
+    display: none;
+}
+
+#privacy-modal h1 {
+    color: var(--quaternary-color);
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+#privacy-modal p {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+    line-height: 1.6rem;
+}
+
+details p {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+    line-height: 1.6rem;
+    padding: 1rem 0;
+}
+
+details summary {
+    color: var(--quaternary-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+#close-privacy-modal {
+    background: transparent;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+#close-privacy-modal ion-icon {
+    color: var(--quaternary-color);
+    font-size: 2.6rem;
 }
 
 main {
@@ -40,6 +97,7 @@ main {
     flex-direction: column;
     gap: 3rem;
     width: 100%;
+    height: 100%;
     padding: 5rem 0 5rem 0;
 }
 
@@ -54,6 +112,7 @@ form {
 
 .input {
     color: var(--secondary-color);
+    position: relative;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -61,6 +120,15 @@ form {
     flex-direction: column;
     gap: .5rem;
     font-size: .9rem;
+}
+
+.input ion-icon {
+    color: var(--quaternary-color);
+    position: absolute;
+    top: 2.4rem;
+    right: 1rem;
+    font-size: 1.6rem;
+    cursor: pointer;
 }
 
 .input input {
@@ -83,6 +151,15 @@ form {
     outline: .1rem solid var(--tertiary-color);
 }
 
+.input .error {
+    background: var(--sixnary-color);
+    color: var(--primary-color);
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+    z-index: -1;
+    display: none;
+}
+
 .button-access {
     color: var(--primary-color);
     background: var(--tertiary-color);
@@ -97,8 +174,8 @@ form {
     transition: 0.3s;
 }
 
-.button-access:hover {
-    background: var(--quaternary-color);
+.button-access[disabled] {
+    opacity: .5;
 }
 
 .button-recover {
@@ -113,13 +190,19 @@ form {
 }
 
 .accept {
+    background: transparent;
     color: var(--primary-color);
     width: 100%;
+    border: none;
+    outline: none;
     display: flex;
     justify-content: start;
     align-items: center;
     flex-direction: row;
     gap: .5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
 .button-back {
@@ -131,11 +214,11 @@ form {
     font-size: 1.1rem;
 }
 
-#char-count {
+/* #char-count {
     float: right;
     font-size: 0.9em;
     color: var(--secondary-color);
-}
+} */
 
 /* responsivity */
 @media (max-width: 429px) {
