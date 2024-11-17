@@ -18,8 +18,8 @@
             <ion-icon name="alert-circle-outline"></ion-icon>
         </article>
 
-        <article id="user-message-sucess">
-            <p>Email enviado com sucesso.</p>
+        <article id="user-message-success">
+            <p>E-mail enviado com sucesso.</p>
             <ion-icon name="checkmark-circle-outline"></ion-icon>
         </article>
 
@@ -50,7 +50,8 @@
                         placeholder="Senha" id="password"
                         autocomplete="off"
                         onchange="onChangePassword()" />
-                        <ion-icon id="password-icon" name="eye-off-outline" onclick="showPassword()"></ion-icon>
+                    <ion-icon id="password-icon" name="eye-off-outline"
+                        onclick="showPassword()"></ion-icon>
                     <span class="error" id="password-required-error">Campo de
                         senha é obrigatótio.</span>
                 </label>
@@ -62,7 +63,8 @@
 
                 <!-- recover -->
                 <button type="button" class="button-recover"
-                    id="recover-password-button" disabled="true" onclick="recoverPassword()">Recuperar
+                    id="recover-password-button" disabled="true"
+                    onclick="recoverPassword()">Recuperar
                     senha</button>
             </form>
 
@@ -82,8 +84,8 @@
             src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
         <!-- import firebase CDN -->
         <script
-            src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+            src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
         <script
-            src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth-compat.js"></script>
+            src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
     </body>
 </html>

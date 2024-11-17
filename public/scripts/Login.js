@@ -34,22 +34,22 @@ function cleanInputs() {
 function recoverPassword() {
     firebase.auth().sendPasswordResetEmail(form.email().value)
     .then(() => {
-        const userMessageSuccess = document.getElementById("user-message-sucess");
-        userMessageSuccess.style.display = "flex";
+        const userMessageSucess = document.getElementById("user-message-success");
+        userMessageSucess.style.display = "flex";
 
         setTimeout(() => {
-            userMessageSuccess.style.display = "none";
+            userMessageSucess.style.display = "none";
         }, 2800);
         cleanInputs();
     })
     .catch(error => {
         const userMessageEror = document.getElementById("user-message-error");
         userMessageEror.style.display = "flex";
-        cleanInputs();
 
         setTimeout(() => {
             userMessageEror.style.display = "none";
         }, 2800);
+        cleanInputs();
     });
 }
 

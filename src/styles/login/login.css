@@ -58,7 +58,7 @@ body {
     font-weight: 400;
 }
 
-#user-message-sucess {
+#user-message-success {
     background: var(--primary-color);
     position: absolute;
     top: 2rem;
@@ -73,12 +73,12 @@ body {
     display: none;
 }
 
-#user-message-sucess ion-icon {
+#user-message-success ion-icon {
     color: var(--septenary-color);
     font-size: 1.4rem;
 }
 
-#user-message-sucess p {
+#user-message-success p {
     color: var(--septenary-color);
     font-size: 1.2rem;
     font-weight: 400;
