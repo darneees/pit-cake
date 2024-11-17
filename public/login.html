@@ -13,9 +13,19 @@
     </head>
     <body>
 
-        <article id="user-message-error">
-            <p>Usuário não encontrado</p>
+        <article id="user-status-message">
+            <p>Usuário não encontrado.</p>
             <ion-icon name="alert-circle-outline"></ion-icon>
+        </article>
+
+        <article id="user-message-sucess">
+            <p>Email enviado com sucesso.</p>
+            <ion-icon name="checkmark-circle-outline"></ion-icon>
+        </article>
+
+        <article id="user-message-error">
+            <p>Email não encontrado.</p>
+            <ion-icon name="close-circle-outline"></ion-icon>
         </article>
 
         <main>
@@ -40,6 +50,7 @@
                         placeholder="Senha" id="password"
                         autocomplete="off"
                         onchange="onChangePassword()" />
+                        <ion-icon id="password-icon" name="eye-off-outline" onclick="showPassword()"></ion-icon>
                     <span class="error" id="password-required-error">Campo de
                         senha é obrigatótio.</span>
                 </label>
@@ -51,7 +62,7 @@
 
                 <!-- recover -->
                 <button type="button" class="button-recover"
-                    id="recover-password-button" disabled="true">Recuperar
+                    id="recover-password-button" disabled="true" onclick="recoverPassword()">Recuperar
                     senha</button>
             </form>
 
@@ -59,7 +70,7 @@
                 class="button-back">Voltar</a>
         </main>
 
-        <script src="scripts/login.js"></script>
+        <script src="scripts/Login.js"></script>
         <script type="module"
             src="../src/services/firebase/firebaseConfig.js"></script>
         <script src="scripts/Validations.js"></script>

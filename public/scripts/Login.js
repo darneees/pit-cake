@@ -9,7 +9,9 @@ function onChangePassword() {
 }
 
 function login() {
-    firebase.auth().signInWithEmailAndPassword(form.email().value, form.password().value)
+    firebase.auth().signInWithEmailAndPassword(
+    form.email().value, 
+    form.password().value)
     .then(response => {
         window.location.href = "appView.html";
     })
@@ -29,6 +31,28 @@ function cleanInputs() {
     form.password().value = "";
 }
 
+function recoverPassword() {
+    firebase.auth().sendPasswordResetEmail(form.email().value)
+    .then(() => {
+        const userMessageSuccess = document.getElementById("user-message-sucess");
+        userMessageSuccess.style.display = "flex";
+
+        setTimeout(() => {
+            userMessageSuccess.style.display = "none";
+        }, 2800);
+        cleanInputs();
+    })
+    .catch(error => {
+        const userMessageEror = document.getElementById("user-message-error");
+        userMessageEror.style.display = "flex";
+        cleanInputs();
+
+        setTimeout(() => {
+            userMessageEror.style.display = "none";
+        }, 2800);
+    });
+}
+
 // VALIDACIÓN DE FORMULARIO
 const form = {
     email: () => document.getElementById("email"),
@@ -37,7 +61,7 @@ const form = {
     loginButton: () => document.getElementById("login-button"),
     password: () => document.getElementById("password"),
     passwordRequiredError: () => document.getElementById("password-required-error"),
-    recoverPassword: () => document.getElementById("recover-password-button")
+    recoverPasswordButton: () => document.getElementById("recover-password-button")
 }
 
 function isEmailValid() {
@@ -75,8 +99,21 @@ function togglePasswordErros() {
 
 function toggleButtonsDisable() {
     const emailValid = isEmailValid();
-    form.recoverPassword().disabled = !emailValid;
+    form.recoverPasswordButton().disabled = !emailValid;
     
     const passwordValid = isPasswordValid();
     form.loginButton().disabled = !emailValid || !passwordValid;
+}
+
+let a;
+function showPassword() {
+    if(a == 1) {
+        document.getElementById("password").type="password";
+        document.getElementById("password-icon").name="eye-off-outline";
+        a = 0;
+    } else {
+        document.getElementById("password").type="text";
+        document.getElementById("password-icon").name="eye-outline";
+        a = 1;
+    }
 }

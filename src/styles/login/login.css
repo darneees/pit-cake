@@ -15,6 +15,7 @@
     --quaternary-color: #563A9C;
     --quinary-color: #888888;
     --sixnary-color: #D14D72;
+    --septenary-color: #347D21;
     --gradient-color: linear-gradient(180deg, #A5F491, #347D21);
     --loader-color:  rgba(0, 0, 0, .6);
 }
@@ -31,7 +32,7 @@ body {
     z-index: 1;
 }
 
-#user-message-error {
+#user-status-message {
     background: var(--sixnary-color);
     position: absolute;
     top: 2rem;
@@ -46,13 +47,65 @@ body {
     display: none;
 }
 
-#user-message-error ion-icon {
+#user-status-message ion-icon {
     color: var(--primary-color);
     font-size: 1.4rem;
 }
 
-#user-message-error p {
+#user-status-message p {
     color: var(--primary-color);
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+#user-message-sucess {
+    background: var(--primary-color);
+    position: absolute;
+    top: 2rem;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: .5rem;
+    border-radius: 5rem;
+    z-index: 2;
+    display: none;
+}
+
+#user-message-sucess ion-icon {
+    color: var(--septenary-color);
+    font-size: 1.4rem;
+}
+
+#user-message-sucess p {
+    color: var(--septenary-color);
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+#user-message-error {
+    background: var(--primary-color);
+    position: absolute;
+    top: 2rem;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: .5rem;
+    border-radius: 5rem;
+    z-index: 2;
+    display: none;
+}
+
+#user-message-error ion-icon {
+    color: var(--sixnary-color);
+    font-size: 1.4rem;
+}
+
+#user-message-error p {
+    color: var(--sixnary-color);
     font-size: 1.2rem;
     font-weight: 400;
 }
@@ -92,6 +145,7 @@ label {
 label input {
     background: var(--primary-color);
     color: var(--secondary-color);
+    position: relative;
     width: 100%;
     padding: 1.2rem 2rem;
     border: none;
@@ -104,6 +158,15 @@ label input {
 label input::placeholder {
     color: var(--quinary-color);
     opacity: .6;
+}
+
+label ion-icon {
+    color: var(--quaternary-color);
+    position: absolute;
+    top: 2.4rem;
+    right: 1rem;
+    font-size: 1.6rem;
+    cursor: pointer;
 }
 
 label .error {

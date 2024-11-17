@@ -9,11 +9,13 @@
 }
 
 :root {
-    --primary-color: #f5f5f5;
+    --primary-color: #FFFFFF;
     --secondary-color: #1c1c1c;
-    --tertiary-color: #8D56C7;
-    --quaternary-color: #69369F;
+    --tertiary-color: #7752FE;
+    --quaternary-color: #563A9C;
     --quinary-color: #888888;
+    --sixnary-color: #D14D72;
+    --septenary-color: #347D21;
     --gradient-color: linear-gradient(180deg, #A5F491, #347D21);
     --loader-color:  rgba(0, 0, 0, .6);
 }
@@ -127,6 +129,12 @@ form {
     cursor: pointer;
     font-weight: 300;
     font-size: 1.1rem;
+}
+
+#char-count {
+    float: right;
+    font-size: 0.9em;
+    color: var(--secondary-color);
 }
 
 /* responsivity */

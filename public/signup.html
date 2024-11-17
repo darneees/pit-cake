@@ -17,8 +17,11 @@
             <form id="loginForm">
                 <label for="username" class="input">
                     Nome de usuário
-                    <input type="text" placeholder="Nome de usuário" id="username"
-                        autocomplete="off" required>
+                    <input type="text" placeholder="Nome de usuário"
+                        id="username"
+                        autocomplete="off" required maxlength="15"
+                        oninput="updateCharacterCount()">
+                    <span id="char-count">0/15</span>
                 </label>
 
                 <label for="email" class="input">
@@ -35,7 +38,8 @@
 
                 <label for="password" class="input">
                     confirmação de senha
-                    <input type="password" placeholder="senha" id="passwordAgain"
+                    <input type="password" placeholder="senha"
+                        id="passwordAgain"
                         autocomplete="off" required>
                 </label>
 
@@ -44,11 +48,12 @@
                     Aceito os termos de uso e a politica de privacidade
                 </label>
 
-                <button type="submit" class="button-access" onclick="register()">Criar conta</button>
+                <button type="submit" class="button-access"
+                    onclick="register()">Criar conta</button>
             </form>
 
             <a href="../index.html" rel="noopener noreferrer"
-            class="button-back">Voltar</a>
+                class="button-back">Voltar</a>
         </main>
 
         <script src="scripts/signup.js"></script>
