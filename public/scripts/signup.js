@@ -1,12 +1,47 @@
-function onChangeEmail() {
-    toggleButtonsDisable();
-    toggleEmailErros();
+// REGISTRAR NOVOS USUÁRIOS
+function register() {
+    firebase.auth().createUserWithEmailAndPassword(form.email().value, form.password().value)
+    .then(response => {
+        const userCreateSuccess = document.getElementById('user-create-message');
+        userCreateSuccess.style.display = 'flex';
+
+        setTimeout(() => {
+            userCreateSuccess.style.display = 'none';
+        }, 2800);
+
+    }).catch(error => {
+        const userCreateError = document.getElementById('user-create-error');
+        userCreateError.style.display = 'flex';
+
+        setTimeout(() => {
+            userCreateError.style.display = 'none';
+        }, 2800);
+        resetForm();
+    });
 }
 
-function onChangePassword() {
-    toggleButtonsDisable();
-    togglePasswordErros();
-    validadePasswordsMatch();
+// REINICIAR FORMULÁRIO
+function resetForm() {
+    form.email().value = "";
+    form.password().value = "";
+    form.confirmPassword().value = "";
+    form.createButton().disabled = true;
+}
+
+//  MENSAGEM DE ERRO FIREBASE
+function getErrorMessage(error) {
+    switch (error.code) {
+        case "auth/email-already-in-use":
+            return "Este email já está em uso.";
+        case "auth/invalid-email":
+            return "O email fornecido é inválido.";
+        case "auth/weak-password":
+            return "A senha deve ter pelo menos 6 caracteres.";
+        case "auth/network-request-failed":
+            return "Falha de rede detectada. Verifique sua conexão com a internet e tente novamente.";
+        default:
+            return "Ocorreu um erro desconhecido. Por favor, tente novamente mais tarde.";
+    }
 }
 
 // MODAL POLITICA DE PRIVACIDAD
@@ -23,6 +58,17 @@ close.addEventListener('click', () => {
 });
 
 // VALIDACIÓN DE FORMULARIO
+function onChangeEmail() {
+    toggleButtonsDisable();
+    toggleEmailErros();
+}
+
+function onChangePassword() {
+    toggleButtonsDisable();
+    togglePasswordErros();
+    validadePasswordsMatch();
+}
+
 const form = {
     createButton: () => document.getElementById("create-button"),
     email: () => document.getElementById("email"),

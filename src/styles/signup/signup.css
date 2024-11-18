@@ -34,6 +34,60 @@ body {
     z-index: 1;
 }
 
+#user-create-message {
+    background: var(--primary-color);
+    position: absolute;
+    top: 2rem;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: .5rem;
+    border-radius: 5rem;
+    z-index: 2;
+    display: none;
+}
+
+#user-create-message ion-icon {
+    color: var(--septenary-color);
+    font-size: 1.4rem;
+}
+
+#user-create-message p {
+    color: var(--septenary-color);
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
+#user-create-error {
+    background: var(--primary-color);
+    position: absolute;
+    top: 2rem;
+    width: 90%;
+    height: auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: .5rem;
+    border-radius: 5rem;
+    z-index: 2;
+    display: none;
+}
+
+#user-create-error ion-icon {
+    color: var(--septenary-color);
+    font-size: 1.4rem;
+}
+
+#user-create-error p {
+    color: var(--septenary-color);
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+
 #privacy-modal {
     background: var(--primary-color);
     position: fixed;

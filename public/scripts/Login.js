@@ -9,8 +9,8 @@ function onChangePassword() {
 }
 
 function login() {
-    firebase.auth().signInWithEmailAndPassword(
-    form.email().value, 
+    firebase.auth().signInWithEmailAndPassword
+    (form.email().value, 
     form.password().value)
     .then(response => {
         window.location.href = "appView.html";

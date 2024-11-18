@@ -13,6 +13,16 @@
     </head>
     <body>
 
+        <article id="user-create-message">
+            <p>Conta criada com sucesso.</p>
+            <ion-icon name="checkmark-circle-outline"></ion-icon>
+        </article>
+
+        <article id="user-create-error">
+            <p>Ocorreu um erro durante a criação da conta.</p>
+            <ion-icon name="checkmark-circle-outline"></ion-icon>
+        </article>
+
         <article id="privacy-modal">
             <button type="button" id="close-privacy-modal" class="close">
                 <ion-icon name="close-outline"></ion-icon>
@@ -98,14 +108,6 @@
 
         <main>
             <form id="loginForm">
-                <!-- <label for="username" class="input">
-                    Nome de usuário
-                    <input type="text" placeholder="Nome de usuário"
-                        id="username"
-                        autocomplete="off" required maxlength="15"
-                        oninput="updateCharacterCount()">
-                    <span id="char-count">0/15</span>
-                </label> -->
 
                 <label for="email" class="input">
                     E-mail
@@ -150,7 +152,7 @@
                 </button>
 
                 <button type="submit" id="create-button" class="button-access"
-                    disabled="true">Criar conta</button>
+                    disabled="true" onclick="register()">Criar conta</button>
             </form>
 
             <a href="../index.html" rel="noopener noreferrer"
