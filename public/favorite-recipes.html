@@ -4,11 +4,27 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Receitas Favoritas - Pit Cake</title>
-        <link rel="stylesheet" href="styles/favorites/styles.css">
+        <link rel="stylesheet" href="../src/styles/favorites/favorite.css">
     </head>
     <body>
-        <h2>Minhas Receitas Favoritas</h2>
-        <div id="favoriteRecipesList"></div>
-        <script src="scripts/favoriteRecipes.js"></script>
+        <header>
+            <a href="appView.html" rel="noopener noreferrer"
+                class="back-option">
+                <ion-icon name="chevron-back-outline"></ion-icon>
+            </a>
+        </header>
+
+        <main>
+            <section class="main-content">
+                <h2>Receitas salvas</h2>
+                <article id="favoriteRecipesList"></article>
+            </section>
+        </main>
+
+        <!-- import icon -->
+        <script type="module"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     </body>
 </html>

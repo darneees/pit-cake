@@ -9,17 +9,47 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Pit Cake</title>
         <!-- import css -->
-        <link rel="stylesheet" href="../src/styles/pages.css">
+        <link rel="stylesheet" href="../src/styles/view.css">
     </head>
     <body>
 
-        <main>
-            <h1>Pit Cake</h1>
-
+        <article class="menu">
+            <a href="" class="item">
+                Alterar dados
+                <ion-icon name="options-outline"></ion-icon>
+            </a>
+            <span class="line"></span>
+            <a href="favorite-recipes.html" class="item">
+                Receitas Salvas
+                <ion-icon name="heart-outline"></ion-icon>
+            </a>
+            <span class="line"></span>
             <a href="../index.html" rel="noopener noreferrer"
-                class="button-back">Sair</a>
+                class="item">
+                Sair da conta
+                <ion-icon name="log-in-outline"></ion-icon>
+            </a>
+        </article>
+
+        <header>
+            <picture class="header-profile">
+                <p>image</p>
+            </picture>
+
+            <article class="header-options">
+                <button id="openMenu">
+                    <ion-icon name="reorder-three-outline"></ion-icon>
+                </button>
+            </article>
+        </header>
+
+        <main>
+            <section class="main-content">
+                <h1>Receitas</h1>
+            </section>
         </main>
 
+        <script src="../src/pages/appView.js"></script>
         <script type="module"
             src="../src/services/firebase/firebaseConfig.js"></script>
         <script src="scripts/Validations.js"></script>

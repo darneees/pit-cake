@@ -28,33 +28,80 @@ body {
     overflow-x: hidden;
 }
 
+.menu {
+    background: var(--primary-color);
+    position: absolute;
+    top: 13%;
+    right: 5%;
+    width: 55%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    padding: 2rem;
+    gap: .5rem;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-color);
+    display: none;
+    z-index: 4;
+}
+
+.active {
+    display: flex;
+}
+
+.menu a {
+    color: var(--secondary-color);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    flex-direction: row;
+    text-decoration: none;
+    font-size: 1.13rem;
+    padding: .5rem 0;
+}
+
+.menu a:hover {
+    color: var(--tertiary-color);
+}
+
+.menu .line {
+    width: 100%;
+    height: .1rem;
+    background: var(--secondary-color);
+    opacity: .1;
+}
+
 header {
     background: var(--quinary-color);
     position: fixed;
     width: 100%;
     height: 10vh;
     display: flex;
-    justify-content: start;
-    align-items: center;
+    justify-content: space-between;
     flex-direction: row;
+    align-items: center;
     padding: 0 5%;
     z-index: 3;
 }
 
-header .back-option {
+.header-profile {
+    width: auto;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-decoration: none;
-    height: 2.2rem;
-    width: 2.4rem;
-    border-radius: .5rem;
-    border: .12rem solid var(--primary-color);
+    flex-direction: row;
 }
 
-.back-option ion-icon {
+.header-options #openMenu {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 2.2rem;
     color: var(--primary-color);
-    font-size: 1.2rem;
+    cursor: pointer;
 }
 
 main {
@@ -71,9 +118,10 @@ main {
     align-items: start;
     flex-direction: column;
     overflow-y: scroll;
+    border: .1rem solid var(--tertiary-color);
 }
 
-.main-content h2 {
+.main-content h1 {
     color: var(--quinary-color);
     font-size: 1.7rem;
     font-weight: 400;
