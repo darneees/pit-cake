@@ -19,7 +19,7 @@
         </article>
 
         <article id="user-create-error">
-            <p>Ocorreu um erro durante a criação da conta.</p>
+            <p>Erro ao criar a conta.</p>
             <ion-icon name="checkmark-circle-outline"></ion-icon>
         </article>
 
@@ -152,25 +152,95 @@
                 </button>
 
                 <button type="submit" id="create-button" class="button-access"
-                    disabled="true" onclick="register()">Criar conta</button>
+                    disabled="true">
+                    Criar conta
+                </button>
             </form>
 
             <a href="../index.html" rel="noopener noreferrer"
                 class="button-back">Voltar</a>
         </main>
 
+        <script src="scripts/signup.js"></script>
+        <script src="scripts/Validations.js"></script>
         <!-- import icon -->
         <script type="module"
             src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
         <!-- import js -->
-        <script src="scripts/signup.js"></script>
-        <script src="scripts/Validations.js"></script>
-        <script type="module"
-            src="../src/services/firebase/firebaseConfig.js"></script>
-        <!-- import firebase CDN -->
-        <script
-            src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
-        <script
-            src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+            import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
+          
+            const firebaseConfig = {
+              apiKey: "AIzaSyB2AHNt_PivaDLXIkNAcdp3VqTkyP3VLPM",
+              authDomain: "pit-cake.firebaseapp.com",
+              projectId: "pit-cake",
+              storageBucket: "pit-cake.firebasestorage.app",
+              messagingSenderId: "228216532358",
+              appId: "1:228216532358:web:5488cd1695a894cbe7d007",
+            };
+          
+            const app = initializeApp(firebaseConfig);
+            const auth = getAuth(app);
+          
+            // REGISTRAR NOVOS USUÁRIOS
+            document.getElementById("create-button").addEventListener("click", () => {
+              const email = form.email().value;
+              const password = form.password().value;
+          
+              createUserWithEmailAndPassword(auth, email, password)
+                .then((response) => {
+                  const userCreateSuccess = document.getElementById("user-create-message");
+                  userCreateSuccess.textContent = "Conta criada com sucesso!";
+                  userCreateSuccess.style.display = "flex";
+          
+                  setTimeout(() => {
+                    userCreateSuccess.style.display = "none";
+                  }, 2800);
+                  resetForm();
+                })
+                .catch((error) => {
+                  const userCreateError = document.getElementById("user-create-error");
+                  userCreateError.textContent = getErrorMessage(error);
+                  userCreateError.style.display = "flex";
+          
+                  setTimeout(() => {
+                    userCreateError.style.display = "none";
+                  }, 2800);
+                  resetForm();
+                });
+            });
+          
+            // RESETAR FORMULÁRIO
+            function resetForm() {
+              form.email().value = "";
+              form.password().value = "";
+            }
+          
+            // FORMULÁRIO
+            const form = {
+              email: () => document.getElementById("email"),
+              password: () => document.getElementById("password"),
+            };
+          
+            // MENSAGEM DE ERRO FIREBASE
+            function getErrorMessage(error) {
+              switch (error.code) {
+                case "auth/email-already-in-use":
+                  return "Este email já está em uso.";
+                case "auth/invalid-email":
+                  return "O email fornecido é inválido.";
+                case "auth/weak-password":
+                  return "A senha deve ter pelo menos 6 caracteres.";
+                case "auth/network-request-failed":
+                  return "Falha de rede detectada. Verifique sua conexão com a internet e tente novamente.";
+                default:
+                  return "Ocorreu um erro desconhecido. Por favor, tente novamente mais tarde.";
+              }
+            }
+          </script>
+
     </body>
 </html>

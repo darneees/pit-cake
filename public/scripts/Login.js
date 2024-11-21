@@ -8,51 +8,6 @@ function onChangePassword() {
     togglePasswordErros();
 }
 
-function login() {
-    firebase.auth().signInWithEmailAndPassword
-    (form.email().value, 
-    form.password().value)
-    .then(response => {
-        window.location.href = "appView.html";
-    })
-    .catch(error => {
-        const userMessageEror = document.getElementById("user-message-error");
-        userMessageEror.style.display = "flex";
-
-        setTimeout(() => {
-            userMessageEror.style.display = "none";
-        }, 2800);
-        cleanInputs();
-    });
-}
-
-function cleanInputs() {
-    form.email().value = "";
-    form.password().value = "";
-}
-
-function recoverPassword() {
-    firebase.auth().sendPasswordResetEmail(form.email().value)
-    .then(() => {
-        const userMessageSucess = document.getElementById("user-message-success");
-        userMessageSucess.style.display = "flex";
-
-        setTimeout(() => {
-            userMessageSucess.style.display = "none";
-        }, 2800);
-        cleanInputs();
-    })
-    .catch(error => {
-        const userMessageEror = document.getElementById("user-message-error");
-        userMessageEror.style.display = "flex";
-
-        setTimeout(() => {
-            userMessageEror.style.display = "none";
-        }, 2800);
-        cleanInputs();
-    });
-}
-
 // VALIDACIÓN DE FORMULARIO
 const form = {
     email: () => document.getElementById("email"),

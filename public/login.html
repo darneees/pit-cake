@@ -58,14 +58,13 @@
 
                 <!-- access -->
                 <button type="button" class="button-access" id="login-button"
-                    disabled="true"
-                    onclick="login()">Entrar</button>
+                    disabled="true">Entrar</button>
 
                 <!-- recover -->
                 <button type="button" class="button-recover"
-                    id="recover-password-button" disabled="true"
-                    onclick="recoverPassword()">Recuperar
-                    senha</button>
+                    id="recover-password-button" disabled="true">
+                    Recuperar senha
+                </button>
             </form>
 
             <a href="../index.html" rel="noopener noreferrer"
@@ -73,18 +72,76 @@
         </main>
 
         <script src="scripts/Login.js"></script>
-        <script type="module"
-            src="../src/services/firebase/firebaseConfig.js"></script>
         <script src="scripts/Validations.js"></script>
         <!-- import icon -->
         <script type="module"
             src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule
             src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-        <!-- import firebase CDN -->
-        <script
-            src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
-        <script
-            src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
+        <!-- import firebase module -->
+        <script type="module">
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+            import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
+            
+            const firebaseConfig = {
+              apiKey: "AIzaSyB2AHNt_PivaDLXIkNAcdp3VqTkyP3VLPM",
+              authDomain: "pit-cake.firebaseapp.com",
+              projectId: "pit-cake",
+              storageBucket: "pit-cake.firebasestorage.app",
+              messagingSenderId: "228216532358",
+              appId: "1:228216532358:web:5488cd1695a894cbe7d007"
+            };
+            
+            const app = initializeApp(firebaseConfig);
+            const auth = getAuth(app);
+            
+            document.getElementById("login-button").addEventListener("click", () => {
+              signInWithEmailAndPassword(auth, form.email().value, form.password().value)
+                .then((response) => {
+                  window.location.href = "appView.html";
+                })
+                .catch((error) => {
+                  const userMessageEror = document.getElementById("user-message-error");
+                  userMessageEror.style.display = "flex";
+            
+                  setTimeout(() => {
+                      userMessageEror.style.display = "none";
+                  }, 2800);
+                  cleanInputs();
+                });
+            });
+
+            document.getElementById("recover-password-button").addEventListener("click", () => {
+                sendPasswordResetEmail(auth, form.email().value)
+                .then((response) => {
+                    const userMessageSucess = document.getElementById("user-message-success");
+                    userMessageSucess.style.display = "flex";
+            
+                    setTimeout(() => {
+                        userMessageSucess.style.display = "none";
+                    }, 2800);
+                    cleanInputs();
+                })
+                .catch((error) => {
+                    const userMessageEror = document.getElementById("user-message-error");
+                    userMessageEror.style.display = "flex";
+            
+                    setTimeout(() => {
+                        userMessageEror.style.display = "none";
+                    }, 2800);
+                    cleanInputs();
+                });
+            });
+            
+            function cleanInputs() {
+              form.email().value = "";
+              form.password().value = "";
+            }
+            
+            const form = {
+              email: () => document.getElementById("email"),
+              password: () => document.getElementById("password")
+            }
+        </script>
     </body>
 </html>

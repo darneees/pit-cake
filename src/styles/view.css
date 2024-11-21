@@ -118,7 +118,6 @@ main {
     align-items: start;
     flex-direction: column;
     overflow-y: scroll;
-    border: .1rem solid var(--tertiary-color);
 }
 
 .main-content h1 {
