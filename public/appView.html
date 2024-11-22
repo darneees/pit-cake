@@ -13,6 +13,29 @@
     </head>
     <body>
 
+        <!-- modal para criar as receitas -->
+        <article class="modal" id="addRecipeModal">
+            <label for="title">
+                Titulo
+                <input type="text" name="title" id="title">
+            </label>
+            <label for="description">
+                Descrição
+                <textarea name="description" id="description"></textarea>
+            </label>
+            <label for="image">
+                Imagem
+                <input type="url" name="image" id="image">
+            </label>
+            <label for="date">
+                Data
+                <input type="date" name="date" id="date">
+            </label>
+            <button id="closeAddRecipeModal">Fechar</button>
+            <button id="saveRecipe">Salvar Receita</button>
+        </article>
+
+        <!-- menu -->
         <article class="menu">
             <a href="account-config.html" class="item">
                 Alterar dados
@@ -31,6 +54,7 @@
             </a>
         </article>
 
+        <!-- cabeçalho -->
         <header>
             <picture class="header-profile">
                 <p>image</p>
@@ -44,8 +68,33 @@
         </header>
 
         <main>
+            <!-- adicionar receitas icone -->
+            <button id="addRecipe">
+                <ion-icon name="add-circle-outline"></ion-icon>
+            </button>
+
+            <!-- lista de receitas -->
             <section class="main-content">
                 <h1>Receitas</h1>
+                
+                <article id="recipeList"></article>
+            </section>
+
+            <!-- detalhe das receitas -->
+            <section class="details" id="recipeDetails">
+                <img id="detailsImage" src alt="Imagem da Receita">
+                <article class="recipeDetails-content">
+                    <button id="closeDetails">
+                        <ion-icon name="arrow-back-circle-outline"></ion-icon>
+                    </button>
+                    <h2 id="detailsTitle"></h2>
+                    <p id="detailsDescription"></p>
+                    <span id="detailsDate"></span>
+                    <article>
+                        <button id="editRecipe">Editar receita</button>
+                        <button id="deleteRecipe">Excluir receita</button>
+                    </article>
+                </article>
             </section>
         </main>
 
