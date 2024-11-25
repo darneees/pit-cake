@@ -11,74 +11,6 @@ close.addEventListener('click', () => {
     modal.style.display = 'none';
 });
 
-// VALIDACIÓN DE FORMULARIO
-function onChangeEmail() {
-    toggleButtonsDisable();
-    toggleEmailErros();
-}
-
-function onChangePassword() {
-    toggleButtonsDisable();
-    togglePasswordErros();
-    validadePasswordsMatch();
-}
-
-const form = {
-    createButton: () => document.getElementById("create-button"),
-    email: () => document.getElementById("email"),
-    emailInvalidError: () => document.getElementById("email-invalid"),
-    emailRequiredError: () => document.getElementById("email-required-error"),
-    password: () => document.getElementById("password"),
-    confirmPassword: () => document.getElementById("confirmPassword"),
-    passwordRequiredError: () => document.getElementById("password-required-error"),
-    PasswordLengthError: () => document.querySelectorAll("password-min-length-error"),
-    PasswordDoesntMatchError: () => document.getElementById("password-doesnt-match-error")
-}
-
-function isEmailValid() {
-    const email = form.email().value;
-    if (!email) {
-        return false;
-    }
-
-    return validateEmail(email);
-}
-
-function isPasswordValid() {
-    const password = form.password().value;
-    if (!password) {
-        return false;
-    }
-
-    return true;
-}
-
-function toggleEmailErros() {
-    const email = form.email().value;
-    form.emailRequiredError().style.display = email ? "none" : "flex";
-    form.email().style.border = email ? "none" : ".1rem solid #D14D72";
-
-    form.emailInvalidError().style.display = validateEmail(email) ? "none" : "flex";
-    form.email().style.border = validateEmail(email) ? "none" : ".1rem solid #D14D72";
-}
-
-function togglePasswordErros() {
-    const password = form.password().value;
-
-    form.passwordRequiredError().style.display = password ? "none" : "flex";
-    form.password().style.border = password ? "none" : ".1rem solid #D14D72";
-
-    document.getElementById('password-min-length-error').style.display = password.length >= 8 ? "none" : "flex";
-    form.password().style.border = password.length >= 8 ? "none" : ".1rem solid #D14D72";
-    form.confirmPassword().style.border = password.length >= 8 ? "none" : ".1rem solid #D14D72";
-}
-
-function toggleButtonsDisable() {
-    const emailValid = isEmailValid();
-    const passwordValid = isPasswordValid();
-    form.createButton().disabled = !emailValid || !passwordValid;
-}
-
 function updateCharacterCount(inputField) {
     const charCountDisplay = inputField.parentElement.querySelector(".char-count");
     const maxLength = inputField.getAttribute("maxlength");
@@ -87,20 +19,6 @@ function updateCharacterCount(inputField) {
     charCountDisplay.textContent = `${currentLength}/${maxLength}`;
 }
 
-function onChangeConfirmPassword() {
-    validadePasswordsMatch();
-}
-
-function validadePasswordsMatch() {
-    const password = form.password().value;
-    const confirmPassword = form.confirmPassword().value;
-
-    const passwordsMatch = password === confirmPassword;
-    form.confirmPassword().style.border = passwordsMatch ? "none" : ".1rem solid #D14D72";
-    form.PasswordDoesntMatchError().style.display = passwordsMatch ? "none" : "flex";
-    form.createButton().disabled = !passwordsMatch;
-}
-// MOSTRAR SENHA
 let a;
 function showPassword() {
     if(a == 1) {
@@ -112,4 +30,114 @@ function showPassword() {
         document.getElementById("password-icon").name="eye-outline";
         a = 1;
     }
+}
+
+function onChangeEmail() {
+    const email = form.email().value;
+    form.emailRequiredError().style.display = email ? "none" : "block";
+    form.emailInvalidError().style.display = validateEmail(email) ? "none" : "block";
+
+    form.email().style.border = email ? "none" : ".1rem solid #D14D72";
+    form.email().style.border = validateEmail(email) ? "none" : ".1rem solid #D14D72";
+
+    toggleRegisterButtonDisable();
+}
+
+function onChangePassword() {
+    const password = form.password().value;
+    form.passwordRequiredError().style.display = password ? "none" : "block";
+    form.passwordMinLengthError().style.display = password.length >= 6 ? "none" : "block";
+
+    validatePasswordsMatch();
+    toggleRegisterButtonDisable();
+}
+
+function onChangeConfirmPassword() {
+    validatePasswordsMatch();
+    toggleRegisterButtonDisable();
+}
+
+function register() {
+    const email = form.email().value;
+    const password = form.password().value;
+    firebase.auth().createUserWithEmailAndPassword(
+        email, password
+    ).then(() => {
+        const success = document.getElementById('user-create-message');
+        success.style.display = 'flex';
+
+        setTimeout(() => {
+            success.style.display = 'none';
+            window.location.href = "appView.html";
+        }, 2800);
+
+        cleanRegister();
+    }).catch(error => {
+        alert(getErrorMessage(error));
+
+        cleanRegister();
+    })
+}
+
+function cleanRegister() {
+    form.email().value = '';
+    form.password().value = '';
+    form.confirmPassword().value = '';
+}
+
+function getErrorMessage(error) {
+    if (error.code == "auth/email-already-in-use") {
+        return "Email já está em uso";
+    }
+    if (error.code == "auth/invalid-email") {
+        return "Email inválido";
+    }
+    return error.message;
+}
+
+function validatePasswordsMatch() {
+    const password = form.password().value;
+    const confirmPassword = form.confirmPassword().value;
+    
+    form.confirmPasswordDoesntMatchError().style.display =
+        password == confirmPassword ? "none" : "block";
+    
+    form.password().style.border = password.length >= 8 ? "none" : ".1rem solid #D14D72";
+    form.confirmPassword().style.border = password.length >= 8 ? "none" : ".1rem solid #D14D72";
+
+}
+
+function toggleRegisterButtonDisable() {
+    form.registerButton().disabled = !isFormValid();
+}
+
+function isFormValid() {
+    const email = form.email().value;
+    if (!email || !validateEmail(email)) {
+        return false;
+    }
+
+    const password = form.password().value;
+    if (!password || password.length < 6) {
+        return false;
+    }
+
+    const confirmPassword = form.confirmPassword().value;
+    if (password != confirmPassword) {
+        return false;
+    }
+
+    return true;
+}
+
+const form = {
+    confirmPassword: () => document.getElementById('confirmPassword'),
+    confirmPasswordDoesntMatchError: () => document.getElementById('password-doesnt-match-error'),
+    email: () => document.getElementById('email'),
+    emailInvalidError: () => document.getElementById('email-invalid-error'),
+    emailRequiredError: () => document.getElementById('email-required-error'),
+    password: () => document.getElementById('password'),
+    passwordMinLengthError: () => document.getElementById('password-min-length-error'),
+    passwordRequiredError: () => document.getElementById('password-required-error'),
+    registerButton: () => document.getElementById('register-button')
 }

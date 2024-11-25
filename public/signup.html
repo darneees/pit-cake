@@ -18,11 +18,6 @@
             <ion-icon name="checkmark-circle-outline"></ion-icon>
         </article>
 
-        <article id="user-create-error">
-            <p>Erro ao criar a conta.</p>
-            <ion-icon name="checkmark-circle-outline"></ion-icon>
-        </article>
-
         <article id="privacy-modal">
             <button type="button" id="close-privacy-modal" class="close">
                 <ion-icon name="close-outline"></ion-icon>
@@ -107,52 +102,59 @@
         </article>
 
         <main>
-            <form id="loginForm">
 
+            <form>
                 <label for="email" class="input">
-                    E-mail
-                    <input type="email" placeholder="email@gmail.com" id="email"
-                        autocomplete="off" onchange="onChangeEmail()">
-                    <span class="error" id="email-required-error">Campo de email
-                        é obrigatótio.</span>
-                    <span class="error" id="email-invalid">Este email é
-                        invalido.</span>
+                    <div><label>Email</label></div>
+                    <input type="email" placeholder="seu@email.com"
+                        onchange="onChangeEmail()" id="email" />
+                    <div class="error" id="email-required-error">
+                        Email é obrigatório
+                    </div>
+                    <div class="error" id="email-invalid-error">
+                        Email é inválido
+                    </div>
                 </label>
 
-                <label for="password" class="input">
-                    Senha
-                    <input type="password" placeholder="senha" id="password"
-                        autocomplete="off" onchange="onChangePassword()"
-                        maxlength="13"
-                        oninput="updateCharacterCount(this)">
-                    <ion-icon id="password-icon" name="eye-off-outline"
+                <label for="senha" class="input">
+                    <label>Senha</label>
+                    <input type="password"
+                        placeholder="Senha"
+                        id="password"
+                        onchange="onChangePassword()" 
+                        maxlength="8"
+                        oninput="updateCharacterCount(this)"/>
+                    <ion-icon id="password-icon"
+                        name="eye-off-outline"
                         onclick="showPassword()"></ion-icon>
-                    <span class="error" id="password-required-error">Campo de
-                        senha é obrigatório.</span>
-                    <span class="error" id="password-min-length-error">Senha
-                        deve ter pelo menos 8 caracteres.</span>
-                    <span class="char-count">0/13</span>
+
+                    <div class="error"
+                        id="password-required-error">
+                        Senha é obrigatório
+                    </div>
+                    <div class="error"
+                        id="password-min-length-error">
+                        Senha deve ter pelo menos 8 caracteres
+                    </div>
+                    <span class="char-count">0/8</span>
                 </label>
 
-                <label for="confirmPassword" class="input">
-                    Confirmar senha
-                    <input type="password" placeholder="senha"
+                <label for="confirmar senha" class="input">
+                    <div><label>Confirmar senha</label></div>
+                    <input type="password" placeholder="Confirmar senha"
                         id="confirmPassword"
-                        autocomplete="off" onchange="onChangeConfirmPassword()"
-                        onchange="onChangePassword()"
-                        maxlength="13"
-                        oninput="updateCharacterCount(this)">
-                    <span class="error" id="password-doesnt-match-error">As
-                        senhas devem ser iguais.</span>
-                    <span class="char-count">0/13</span>
+                        onchange="onChangeConfirmPassword()" />
+                    <div class="error" id="password-doesnt-match-error">
+                        Senha e Confirmar senha devem ser iguais
+                    </div>
                 </label>
 
                 <button type="button" class="accept" id="open-privacy-modal">
                     Termos e politica de privacidade.
                 </button>
 
-                <button type="submit" id="create-button" class="button-access"
-                    disabled="true">
+                <button type="button" class="solid" disabled="true"
+                    onclick="register()" id="register-button">
                     Criar conta
                 </button>
             </form>
@@ -163,13 +165,21 @@
 
         <script src="scripts/signup.js"></script>
         <script src="scripts/Validations.js"></script>
+
+        <script
+            src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app-compat.js"></script>
+        <script
+            src="https://www.gstatic.com/firebasejs/9.6.7/firebase-auth-compat.js"></script>
+
         <!-- import icon -->
         <script type="module"
             src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule
             src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+        <script src="../src/services/firebase-init.js"></script>
         <!-- import js -->
-        <script type="module">
+        <!-- <script type="module">
             import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
             import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
           
@@ -240,7 +250,6 @@
                   return "Ocorreu um erro desconhecido. Por favor, tente novamente mais tarde.";
               }
             }
-          </script>
-
+        </script> -->
     </body>
 </html>

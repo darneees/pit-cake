@@ -62,34 +62,6 @@ body {
     font-weight: 400;
 }
 
-#user-create-error {
-    background: var(--primary-color);
-    position: absolute;
-    top: 2rem;
-    width: auto;
-    height: auto;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    gap: .5rem;
-    border-radius: 5rem;
-    z-index: 2;
-    display: none;
-}
-
-#user-create-error ion-icon {
-    color: var(--sixnary-color);
-    font-size: 1.4rem;
-}
-
-#user-create-error p {
-    color: var(--sixnary-color);
-    font-size: 1.2rem;
-    font-weight: 400;
-}
-
 #privacy-modal {
     background: var(--primary-color);
     position: fixed;
@@ -178,15 +150,6 @@ form {
     font-size: .9rem;
 }
 
-.input ion-icon {
-    color: var(--quaternary-color);
-    position: absolute;
-    top: 2.4rem;
-    right: 1rem;
-    font-size: 1.6rem;
-    cursor: pointer;
-}
-
 .input input {
     background: var(--primary-color);
     color: var(--secondary-color);
@@ -207,16 +170,16 @@ form {
     outline: .1rem solid var(--tertiary-color);
 }
 
-.input .error {
-    background: var(--sixnary-color);
-    color: var(--primary-color);
-    padding: .5rem 1rem;
-    border-radius: .5rem;
-    z-index: -1;
-    display: none;
+.input ion-icon {
+    color: var(--quaternary-color);
+    position: absolute;
+    top: 2.4rem;
+    right: 1rem;
+    font-size: 1.6rem;
+    cursor: pointer;
 }
 
-.button-access {
+.solid {
     color: var(--primary-color);
     background: var(--tertiary-color);
     width: 100%;
@@ -230,19 +193,17 @@ form {
     transition: 0.3s;
 }
 
-.button-access[disabled] {
+.solid[disabled] {
     opacity: .5;
 }
 
-.button-recover {
-    background: transparent;
+.error {
+    background: var(--sixnary-color);
     color: var(--primary-color);
-    border: none;
-    outline: none;
-    text-decoration: underline;
-    cursor: pointer;
-    font-weight: 300;
-    font-size: 1.1rem;
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+    z-index: -1;
+    display: none;
 }
 
 .accept {
@@ -270,11 +231,11 @@ form {
     font-size: 1.1rem;
 }
 
-/* #char-count {
+#char-count {
     float: right;
     font-size: 0.9em;
     color: var(--secondary-color);
-} */
+}
 
 /* responsivity */
 @media (max-width: 429px) {
