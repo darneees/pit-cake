@@ -16,23 +16,35 @@
         <!-- modal para criar as receitas -->
         <article class="modal" id="addRecipeModal">
             <label for="title">
-                Titulo
-                <input type="text" name="title" id="title">
+                Nome da receita
+                <input type="text" name="title" id="title" >
             </label>
+
             <label for="description">
-                Descrição
+                Modo de preparo da receita
                 <textarea name="description" id="description"></textarea>
             </label>
+
             <label for="image">
-                Imagem
+                imagem (link de endereço da imagem)
                 <input type="url" name="image" id="image">
             </label>
+
             <label for="date">
-                Data
+                Data de criação da receita
                 <input type="date" name="date" id="date">
             </label>
-            <button id="closeAddRecipeModal">Fechar</button>
-            <button id="saveRecipe">Salvar Receita</button>
+
+            <article class="mdoal-button">
+                <button id="closeAddRecipeModal">
+                    <ion-icon name="close-outline"></ion-icon>
+                </button>
+                
+                <button id="saveRecipe">
+                    Salvar
+                    <ion-icon name="save-outline"></ion-icon>
+                </button>
+            </article>
         </article>
 
         <!-- menu -->
@@ -56,9 +68,9 @@
 
         <!-- cabeçalho -->
         <header>
-            <picture class="header-profile">
-                <p>image</p>
-            </picture>
+            <label class="header-profile">
+                <p>Receitas</p>
+            </label>
 
             <article class="header-options">
                 <button id="openMenu">
@@ -75,8 +87,6 @@
 
             <!-- lista de receitas -->
             <section class="main-content">
-                <h1>Receitas</h1>
-                
                 <article id="recipeList"></article>
             </section>
 

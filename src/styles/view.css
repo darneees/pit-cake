@@ -14,6 +14,7 @@
     --tertiary-color: #8D56C7;
     --quaternary-color: #69369F;
     --quinary-color: #3C8C28;
+    --sixtnary-color: #ccc;
     --gradient-color: linear-gradient(120deg, #A5F491, #3C8C28);
     --shadow-color: rgba(0, 0, 0, 0.20) 0 5px 20px;
 }
@@ -33,16 +34,17 @@ body {
     align-items: center;
     justify-content: center;
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
+    bottom: 1rem;
+    right: 1rem;
     width: 4rem;
     height: 4rem;
-    background-color: #fff;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 2rem;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--shadow-color);
     cursor: pointer;
+    z-index: 3;
 }
 
 #addRecipe ion-icon {
@@ -61,48 +63,91 @@ body {
 }
 
 #addRecipeModal {
-    background: var(--gradient-color);
+    background: var(--primary-color);
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: end;
+    gap: 1rem;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    padding: 0 0 10% 0;
+    overflow-y: scroll;
     z-index: 2;
     display: none;
 }
 
-#addRecipeModal label {
+.mdoal-button {
+    width: 25%;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: start;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 1rem 0;
+}
+
+#closeAddRecipeModal {
+    background-color: transparent;
+    color: var(--quinary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    border: .15rem solid var(--quinary-color);
+    outline: none;
+    padding: .8rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+#saveRecipe {
+    background-color: var(--quinary-color);
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    border: none;
+    outline: none;
+    padding: 1rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+#addRecipeModal label {
+    width: 25%;
+    display: flex;
     flex-direction: column;
-    color: #fff;
+    align-items: start;
+    justify-content: center;
+    gap: 1rem;
+    color: var(--quinary-color);
 }
 
 #addRecipeModal label input {
     width: 100%;
-    padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
+    height: 3rem;
+    padding: 1rem;
+    border: 1px solid var(--sixtnary-color);
     border-radius: 5px;
 }
 
 #addRecipeModal label textarea {
     width: 100%;
+    min-height: 5rem;
     padding: 10px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
+    border: 1px solid var(--sixtnary-color);
     border-radius: 5px;
 }
 
 .card {
     max-width: 300px;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-color);
     overflow: hidden;
 }
 .card img {
@@ -111,7 +156,7 @@ body {
     object-fit: cover;
 }
 .card .info {
-    background-color: #347D21;
+    background-color: var(--quinary-color);
     height: 4.5rem;
     display: flex;
     align-items: center;
@@ -121,7 +166,7 @@ body {
     padding: 0 1.5rem;
 }
 .card .info h3 {
-    color: #fff;
+    color: var(--primary-color);
     font-size: 1.2rem;
     font-weight: 500;
 }
@@ -135,7 +180,7 @@ body {
 
 .card ion-icon {
     font-size: 2rem;
-    color: #fff;
+    color: var(--primary-color);
     cursor: pointer;
 
 }
@@ -147,7 +192,7 @@ body {
     width: 100%;
     height: 100%;
     background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-color);
     overflow-y: scroll;
     z-index: 1;
 }
@@ -190,20 +235,51 @@ body {
     color: var(--quinary-color);
 }
 
+#editRecipe {
+    background-color: var(--quinary-color);
+    color: var(--primary-color);
+    border: none;
+    outline: none;
+    padding: 1rem 2rem;
+    cursor: pointer;
+}
+
+#deleteRecipe {
+    background-color: var(--quinary-color);
+    color: var(--primary-color);
+    border: none;
+    outline: none;
+    padding: 1rem 2rem;
+    cursor: pointer;
+}
 
 .recipeDetails-content h2 {
-    color: #347D21;
+    color: var(--quinary-color);
     font-size: 2rem;
+    font-weight: 500;
 }
 
 .recipeDetails-content p {
-    color: #333;
+    color: var(--secondary-color);
     font-size: 1.3rem;
+    opacity: .6;
+    line-height: 1.5;
+    font-weight: 300;
+}
+
+#detailsDate {
+    color: var(--quinary-color);
+    font-size: 1.1rem;
+    margin: 1rem 0;
     opacity: .6;
 }
 
-.recipeDetails-content button {
-    margin: 10px;
+.recipeDetails-content article {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 1rem;
 }
 
 .menu {
@@ -264,13 +340,10 @@ header {
     z-index: 3;
 }
 
-.header-profile {
-    width: auto;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
+header p {
+    color: var(--primary-color);
+    font-size: 1.7rem;
+    font-weight: 400;
 }
 
 .header-options #openMenu {
@@ -289,7 +362,7 @@ main {
 .main-content {
     width: 100vw;
     height: 90vh;
-    padding: 10% 5% 0 5%;
+    padding: 10% 5% 5% 5%;
     z-index: 2;
     display: flex;
     justify-content: start;
@@ -299,16 +372,44 @@ main {
     overflow-y: scroll;
 }
 
-.main-content h1 {
-    color: var(--quinary-color);
-    font-size: 1.7rem;
-    font-weight: 400;
-}
-
 ::-webkit-scrollbar {
     display: none;
 }
 
 ::-webkit-scrollbar-thumb {
     display: none;
+}
+
+@media (min-width: 430px) and (max-width: 779px) {
+    #addRecipeModal label {
+        width: 80%;
+    }
+
+    #recipeList {
+        display: flex;
+        justify-content: center;
+    }
+
+    .mdoal-button {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 429px) {
+    #addRecipeModal label {
+        width: 80%;
+    }
+
+    #recipeList {
+        display: flex;
+        justify-content: center;
+    }
+
+    .mdoal-button {
+        width: 80%;
+    }
+
+    .menu {
+        width: 70%;
+    }
 }
