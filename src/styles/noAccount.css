@@ -1,0 +1,305 @@
+/* import font */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Outfit", sans-serif;
+}
+
+:root {
+    --primary-color: #f5f5f5;
+    --secondary-color: #1B1B1B;
+    --tertiary-color: #8D56C7;
+    --quaternary-color: #69369F;
+    --quinary-color: #3C8C28;
+    --sixtnary-color: #ccc;
+    --gradient-color: linear-gradient(120deg, #A5F491, #3C8C28);
+    --shadow-color: rgba(0, 0, 0, 0.20) 0 5px 20px;
+}
+
+#loom-companion-mv3 {
+    display: none
+}
+
+body {
+    background: var(--primary-color);
+    position: relative;
+    overflow-x: hidden;
+}
+
+#addRecipe {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    width: 4rem;
+    height: 4rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 2rem;
+    box-shadow: var(--shadow-color);
+    cursor: not-allowed;
+    opacity: .4;
+    z-index: 3;
+}
+
+#addRecipe ion-icon {
+    font-size: 4rem;
+    color: var(--quinary-color);
+}
+
+.card {
+    max-width: 280px;
+    width: 100%;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-color);
+    overflow: hidden;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+.card .info {
+    background-color: var(--quinary-color);
+    height: 5.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 0 1.5rem;
+}
+.card .info h3 {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.card .info button {
+    background-color: transparent;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.card ion-icon {
+    font-size: 2rem;
+    color: var(--primary-color);
+    cursor: pointer;
+
+}
+
+.menu {
+    background: var(--primary-color);
+    position: fixed;
+    top: 13%;
+    right: 5%;
+    width: 55%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    flex-direction: column;
+    padding: 2rem;
+    gap: .5rem;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-color);
+    display: none;
+    z-index: 4;
+}
+
+.active {
+    display: flex;
+}
+
+.menu a {
+    color: var(--secondary-color);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    flex-direction: row;
+    text-decoration: none;
+    font-size: 1.13rem;
+    padding: .5rem 0;
+}
+.menu a ion-icon {
+    color: var(--quinary-color);
+    font-size: 1.5rem;
+}
+
+.menu .line {
+    width: 100%;
+    height: .1rem;
+    background: var(--secondary-color);
+    opacity: .1;
+}
+
+.menu a:hover {
+    color: var(--quinary-color);
+}
+
+header {
+    background: var(--quinary-color);
+    position: fixed;
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 5%;
+    z-index: 3;
+}
+
+header p {
+    color: var(--primary-color);
+    font-size: 1.7rem;
+    font-weight: 400;
+}
+
+.header-options #openMenu {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+
+main {
+    width: 100%;
+}
+h3 {
+    color: var(--quinary-color);
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding: 1rem 0;
+}
+
+ul {
+    list-style: none;
+}
+
+.main-content {
+    width: 100%;
+    height: 100%;
+    padding: 10% 5% 5% 5%;
+    z-index: 2;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+#recipeDetails {
+    background: var(--primary-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    padding: 0 0 5% 0;
+    display: none;
+    overflow-y: auto;
+    z-index: 4;
+}
+
+.recipe-content {
+    padding: 0 5%;
+}
+
+#recipeImage {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+}
+
+#recipeTitle {
+    color: var(--quinary-color);
+    font-size: 2.2rem;
+    font-weight: 700;
+    padding: 1rem;
+}
+
+#recipeInfo{
+    color: var(--secondary-color);
+    font-size: 1.3rem;
+    opacity: .6;
+    line-height: 1.5;
+    font-weight: 300;
+    padding: 1rem;
+}
+
+#recipeDetails #close {
+    background-color: var(--quinary-color);
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    border: none;
+    border-radius: 2rem;
+    cursor: pointer;
+}
+
+#recipeDetails #close ion-icon {
+    font-size: 2.8rem;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+::-webkit-scrollbar-thumb {
+    display: none;
+}
+
+@media (min-width: 430px) and (max-width: 779px) {
+    .main-content {
+        height: auto;
+    }
+    
+    .main-content {
+        padding: 30% 5% 5% 5%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .menu {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 429px) {
+
+    .main-content {
+        height: auto;
+    }
+    
+    .main-content {
+        padding: 30% 5% 5% 5%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .menu {
+        width: 70%;
+    }
+}
