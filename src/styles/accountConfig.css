@@ -33,7 +33,7 @@ body {
     overflow-x: hidden;
 }
 
-#update-verify-alert {
+#update-verify {
     background: var(--primary-color);
     position: absolute;
     top: 1rem;
@@ -51,7 +51,7 @@ body {
     display: none;
 }
 
-#update-verify-alert p {
+#update-verify p {
     color: var(--septenary-color);
     font-size: 1.2rem;
     font-weight: 400;
@@ -61,12 +61,12 @@ body {
     gap: .5rem;
 }
 
-#update-verify-alert p ion-icon {
+#update-verify p ion-icon {
     color: var(--septenary-color);
     font-size: 1.4rem;
 }
 
-#update-secess-alert {
+#secess-alert {
     background: var(--primary-color);
     position: absolute;
     top: 1rem;
@@ -84,7 +84,7 @@ body {
     display: none;
 }
 
-#update-secess-alert p {
+#secess-alert p {
     color: var(--quinary-color);
     font-size: 1.2rem;
     font-weight: 400;
@@ -94,8 +94,41 @@ body {
     gap: .5rem;
 }
 
-#update-secess-alert p ion-icon {
+#secess-alert p ion-icon {
     color: var(--quinary-color);
+    font-size: 1.4rem;
+}
+
+#error-alert {
+    background: var(--primary-color);
+    position: absolute;
+    top: 1rem;
+    width: auto;
+    height: 4.4rem;
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: .5rem;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-color);
+    z-index: 5;
+    display: none;
+}
+
+#error-alert p {
+    color: var(--septenary-color);
+    font-size: 1.2rem;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+}
+
+#error-alert p ion-icon {
+    color: var(--septenary-color);
     font-size: 1.4rem;
 }
 

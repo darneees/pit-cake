@@ -12,17 +12,24 @@
     </head>
     <body>
 
-        <article id="update-verify-alert">
+        <article id="update-verify">
             <p>
                 Verifique o seu email <br>antes de atualizá-lo.
                 <ion-icon name="alert-circle-outline"></ion-icon>
             </p>
         </article>
 
-        <article id="update-secess-alert">
+        <article id="secess-alert">
             <p>
                 Link enviado com sucesso!
                 <ion-icon name="checkmark-done-circle-outline"></ion-icon>
+            </p>
+        </article>
+
+        <article id="error-alert">
+            <p>
+                Erro ao enviar link.
+                <ion-icon name="alert-circle-outline"></ion-icon>
             </p>
         </article>
 
@@ -87,7 +94,7 @@
 
         <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
-        import { getAuth, updateEmail, sendEmailVerification, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
+        import { getAuth, updateEmail, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
 
         // 1. Configuração do Firebase
         const firebaseConfig = {
@@ -103,13 +110,17 @@
         const auth = getAuth(app);
 
         // 4. Evento de clique para atualizar o email
-        document.getElementById("update-email-button").addEventListener("click", async () => {
+        document.getElementById("update-email-button").addEventListener("click", () => {
             updateEmail(auth.currentUser, form.update().value)
             .then(() => {
-                console.log("Email updated");
+                const successAlert = form.successAlert();
+                successAlert.style.display = "flex";
+
+                setTimeout(() => {
+                    successAlert.style.display = "none";
+                }, 3000);
                 cleanInputs();
             }).catch((error) => {
-                // alert(getErrorMessage(error));
                 const errorAlert = form.updateMessageError();
                 errorAlert.style.display = "flex";
 
@@ -138,13 +149,21 @@
         
             sendPasswordResetEmail(auth, email)
                 .then(() => {
-                    alert("Link de redefinição de senha enviado com sucesso!");
-                    console.log("Email enviado");
+                    const successAlert = form.successAlert();
+                    successAlert.style.display = "flex";
+
+                    setTimeout(() => {
+                        successAlert.style.display = "none";
+                    }, 3000);
                     cleanInputs();
                 })
                 .catch((error) => {
-                    alert(getErrorMessage(error));
-                    console.log("Erro ao enviar email:");
+                    const errorAlert = form.errorAlert();
+                    errorAlert.style.display = "flex";
+
+                    setTimeout(() => {
+                        errorAlert.style.display = "none";
+                    }, 3000);
                     cleanInputs();
                 });
         });
@@ -157,7 +176,9 @@
           const form = {
             update: () => document.getElementById("emailUpdate"),
             reset: () => document.getElementById("passwordReset"),
-            updateMessageError: () => document.getElementById("update-verify-alert")
+            updateMessageError: () => document.getElementById("update-verify"),
+            successAlert: () => document.getElementById("secess-alert"),
+            errorAlert: () => document.getElementById("error-alert")
           }
 
         function getErrorMessage(error) {
