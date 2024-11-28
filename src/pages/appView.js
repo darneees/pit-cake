@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <img src="${recipe.image}" alt="${recipe.title}">
                 <div class="info">
                     <h3>${recipe.title}</h3>
-                    <article>
+                    <article class="info-buttons">
                         <button data-index="${index}" class="view-recipe">
                             <ion-icon name="expand-outline"></ion-icon>
                         </button>
