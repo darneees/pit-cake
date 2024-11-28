@@ -5,7 +5,6 @@
 ## ✔️ Tecnologias utilizadas:
 - ``HTML5``
 - ``CSS3``
-- ``SASS``
 - ``JAVASCRIPT``
 - ``FIREBASE``
 
