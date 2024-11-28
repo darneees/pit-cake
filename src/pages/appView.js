@@ -18,7 +18,7 @@ document.addEventListener("click", function (e) {
     }
 });
 
-// create/uptade/delete new recipes
+
 document.addEventListener('DOMContentLoaded', () => {
     const addRecipeButton = document.getElementById('addRecipe');
     const recipeList = document.getElementById('recipeList');
@@ -29,6 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const saveRecipeButton = document.getElementById('saveRecipe');
 
     let recipes = JSON.parse(localStorage.getItem('recipes')) || [];
+    const favoritesKey = 'favoriteRecipes';
+    let favorites = JSON.parse(localStorage.getItem(favoritesKey)) || [];
     let isEditing = false;
     let editingIndex = null;
 
@@ -38,20 +40,42 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = document.createElement('div');
             card.classList.add('card');
 
+            const isFavorited = favorites.some(fav => fav.title === recipe.title);
+
             card.innerHTML = `
                 <img src="${recipe.image}" alt="${recipe.title}">
                 <div class="info">
                     <h3>${recipe.title}</h3>
-                    <button data-index="${index}" class="view-recipe">
-                        <ion-icon name="expand-outline"></ion-icon>
-                    </button>
+                    <article>
+                        <button data-index="${index}" class="view-recipe">
+                            <ion-icon name="expand-outline"></ion-icon>
+                        </button>
+                        <button data-index="${index}" class="favorite-recipe" title="${isFavorited ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos'}">
+                            <ion-icon name="${isFavorited ? 'heart' : 'heart-outline'}"></ion-icon>
+                        </button>
+                    </article>
                 </div>
             `;
 
             const viewButton = card.querySelector('.view-recipe');
+            const favoriteButton = card.querySelector('.favorite-recipe');
+
             viewButton.addEventListener('click', () => openDetails(index));
+            favoriteButton.addEventListener('click', () => toggleFavorite(recipe));
+
             recipeList.appendChild(card);
         });
+    };
+
+    const toggleFavorite = (recipe) => {
+        const favoriteIndex = favorites.findIndex(fav => fav.title === recipe.title);
+        if (favoriteIndex > -1) {
+            favorites.splice(favoriteIndex, 1);
+        } else {
+            favorites.push(recipe);
+        }
+        localStorage.setItem(favoritesKey, JSON.stringify(favorites));
+        renderRecipes();
     };
 
     const openDetails = (index) => {
@@ -82,11 +106,13 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        if (isEditing) {
+        if (isEditing && editingIndex !== null) {
+            // Update the existing recipe
             recipes[editingIndex] = { title, description, image, date };
             isEditing = false;
             editingIndex = null;
         } else {
+            // Add a new recipe
             recipes.push({ title, description, image, date });
         }
 
@@ -98,13 +124,14 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('description').value = '';
         document.getElementById('image').value = '';
         document.getElementById('date').value = '';
+
+        if (isEditing) {
+            recipeDetails.style.display = 'none'; // Close details after saving edits
+        }
     };
 
     const editRecipe = (index) => {
         const recipe = recipes[index];
-        const recipeDetails = document.getElementById('recipeDetails');
-
-        recipeDetails.style.display = 'none';
 
         document.getElementById('title').value = recipe.title;
         document.getElementById('description').value = recipe.description;
@@ -127,10 +154,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     addRecipeButton.addEventListener('click', () => {
         addRecipeModal.style.display = 'flex';
-        document.getElementById('title').value = '';
-        document.getElementById('description').value = '';
-        document.getElementById('image').value = '';
-        document.getElementById('date').value = '';
+        isEditing = false;
+        editingIndex = null; // Reset editing state
     });
 
     closeAddRecipeModalButton.addEventListener('click', () => {
@@ -140,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('image').value = '';
         document.getElementById('date').value = '';
         isEditing = false;
-        editingIndex = null;
+        editingIndex = null; // Reset editing state
     });
 
     saveRecipeButton.addEventListener('click', saveRecipe);

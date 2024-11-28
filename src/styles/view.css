@@ -34,7 +34,7 @@ body {
     align-items: center;
     justify-content: center;
     position: fixed;
-    bottom: 1rem;
+    bottom: 5.5rem;
     right: 1rem;
     width: 4rem;
     height: 4rem;
@@ -75,7 +75,7 @@ body {
     width: 100%;
     height: 100%;
     overflow-y: scroll;
-    z-index: 4;
+    z-index: 6;
     display: none;
 }
 
@@ -91,12 +91,12 @@ body {
 
 #closeAddRecipeModal {
     background-color: transparent;
-    color: var(--quinary-color);
+    color: var(--quaternary-color);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    border: .15rem solid var(--quinary-color);
+    border: .15rem solid var(--quaternary-color);
     outline: none;
     padding: .8rem;
     font-size: 1.4rem;
@@ -104,7 +104,7 @@ body {
 }
 
 #saveRecipe {
-    background-color: var(--quinary-color);
+    background-color: var(--quaternary-color);
     color: var(--primary-color);
     display: flex;
     align-items: center;
@@ -156,7 +156,7 @@ body {
     object-fit: cover;
 }
 .card .info {
-    background-color: var(--quinary-color);
+    background-color: var(--quaternary-color);
     height: 4.5rem;
     display: flex;
     align-items: center;
@@ -232,7 +232,7 @@ body {
 
 #closeDetails ion-icon {
     font-size: 3rem;
-    color: var(--quinary-color);
+    color: var(--quaternary-color);
 }
 
 #editRecipe {
