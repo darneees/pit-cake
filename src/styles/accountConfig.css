@@ -18,6 +18,7 @@
     --septenary-color: #D14D72;
     --gradient-color: linear-gradient(120deg, #A5F491, #3C8C28);
     --shadow-color: rgba(0, 0, 0, 0.20) 0 5px 20px;
+    --overlay-color: rgba(0, 0, 0, 0.5);
 }
 
 #loom-companion-mv3 {
@@ -33,10 +34,20 @@ body {
     overflow-x: hidden;
 }
 
+#overlay {
+    background: var(--overlay-color);
+    backdrop-filter: blur(2px);
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    display: none;
+    z-index: 4;
+}
+
 #update-verify {
     background: var(--primary-color);
     position: absolute;
-    top: 1rem;
+    top: 3rem;
     width: 22%;
     height: 4.4rem;
     padding: 0 1.5rem;
@@ -52,7 +63,7 @@ body {
 }
 
 #update-verify p {
-    color: var(--septenary-color);
+    color: var(--quinary-color);
     font-size: 1.2rem;
     font-weight: 400;
     display: flex;
@@ -62,14 +73,15 @@ body {
 }
 
 #update-verify p ion-icon {
-    color: var(--septenary-color);
+    color: var(--quinary-color);
     font-size: 1.4rem;
 }
 
-#secess-alert {
+#success-alert-update,
+#success-alert-password {
     background: var(--primary-color);
     position: absolute;
-    top: 1rem;
+    top: 3rem;
     width: auto;
     height: 4.4rem;
     padding: 0 1.5rem;
@@ -84,7 +96,8 @@ body {
     display: none;
 }
 
-#secess-alert p {
+#success-alert-update p,
+#success-alert-password p {
     color: var(--quinary-color);
     font-size: 1.2rem;
     font-weight: 400;
@@ -94,15 +107,17 @@ body {
     gap: .5rem;
 }
 
-#secess-alert p ion-icon {
+#success-alert-update p ion-icon,
+#success-alert-password p ion-icon {
     color: var(--quinary-color);
     font-size: 1.4rem;
 }
 
-#error-alert {
+#error-alert-uptade,
+#error-alert-password {
     background: var(--primary-color);
     position: absolute;
-    top: 1rem;
+    top: 3rem;
     width: auto;
     height: 4.4rem;
     padding: 0 1.5rem;
@@ -117,7 +132,8 @@ body {
     display: none;
 }
 
-#error-alert p {
+#error-alert-uptade p,
+#error-alert-password p {
     color: var(--septenary-color);
     font-size: 1.2rem;
     font-weight: 400;
@@ -127,7 +143,8 @@ body {
     gap: .5rem;
 }
 
-#error-alert p ion-icon {
+#error-alert-uptade p ion-icon,
+#error-alert-password p ion-icon {
     color: var(--septenary-color);
     font-size: 1.4rem;
 }
@@ -204,6 +221,15 @@ article {
     align-items: start;
     flex-direction: column;
     gap: .6rem;
+}
+
+article .error {
+    background: var(--septenary-color);
+    color: var(--primary-color);
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+    z-index: 1;
+    display: none;
 }
 
 .verify {
@@ -321,15 +347,15 @@ article .resetPassword {
 
 @media (min-width: 780px) and (max-width: 1000px) {
 
-    #update-verify-alert ,
-    #update-secess-alert {
+    #update-verify ,
+    #secess-alert {
         width: auto;
         padding: 0 2rem;
         height: 4.4rem;
     }
 
-    #update-verify-alert p ,
-    #update-secess-alert p {
+    #update-verify p ,
+    #secess-alert p {
         text-align: center;
     }
     
@@ -353,15 +379,15 @@ article .resetPassword {
 
 @media (min-width: 430px) and (max-width: 779px) {
 
-    #update-verify-alert ,
-    #update-secess-alert {
+    #update-verify ,
+    #secess-alert {
         width: auto;
         padding: 0 2rem;
         height: 4.4rem;
     }
 
-    #update-verify-alert p ,
-    #update-secess-alert p {
+    #update-verify p ,
+    #secess-alert p {
         text-align: center;
     }
     
@@ -385,15 +411,15 @@ article .resetPassword {
 
 @media screen and (max-width: 429px) {
 
-    #update-verify-alert ,
-    #update-secess-alert {
+    #update-verify ,
+    #secess-alert {
         width: auto;
         padding: 0 2rem;
         height: 4.4rem;
     }
 
-    #update-verify-alert p ,
-    #update-secess-alert p {
+    #update-verify p ,
+    #secess-alert p {
         text-align: center;
     }
 

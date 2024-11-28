@@ -11,22 +11,39 @@
         <link rel="stylesheet" href="../src/styles/accountConfig.css">
     </head>
     <body>
+        <span id="overlay"></span>
 
         <article id="update-verify">
             <p>
-                Verifique o seu email <br>antes de atualizá-lo.
-                <ion-icon name="alert-circle-outline"></ion-icon>
+                Email de verificação enviado!
+                <ion-icon name="checkmark-done-circle-outline"></ion-icon>
             </p>
         </article>
 
-        <article id="secess-alert">
+        <article id="success-alert-update">
+            <p>
+                Link enviado com sucesso!
+                <br>
+                Faça login novamente.
+                <ion-icon name="checkmark-done-circle-outline"></ion-icon>
+            </p>
+        </article>
+
+        <article id="success-alert-password">
             <p>
                 Link enviado com sucesso!
                 <ion-icon name="checkmark-done-circle-outline"></ion-icon>
             </p>
         </article>
 
-        <article id="error-alert">
+        <article id="error-alert-uptade">
+            <p>
+                Erro ao enviar link.
+                <ion-icon name="alert-circle-outline"></ion-icon>
+            </p>
+        </article>
+
+        <article id="error-alert-password">
             <p>
                 Erro ao enviar link.
                 <ion-icon name="alert-circle-outline"></ion-icon>
@@ -60,11 +77,16 @@
                             id="emailUpdate"
                             autocomplete="off"
                             placeholder="novoemail@gmail.com"
-                            required />
+                            onchange="onUpdateEmail()" />
                         <button type="button" id="update-email-button">
                             <ion-icon name="send-outline"></ion-icon>
                         </button>
                     </label>
+                    <span class="error" id="email-invalid-update">O email
+                        informado é inválido.</span>
+                    <span class="error" id="email-required-update">Campo de
+                        email
+                        é obrigatótio.</span>
                 </article>
 
                 <span class="line"></span>
@@ -75,11 +97,16 @@
                         <input type="email"
                             id="passwordReset"
                             autocomplete="off"
-                            placeholder="Digite seu email" />
+                            placeholder="Digite seu email"
+                            onchange="onResetPassword()" />
                         <button type="button" id="update-password-button">
                             <ion-icon name="send-outline"></ion-icon>
                         </button>
                     </label>
+                    <span class="error" id="email-invalid-reset">O email
+                        informado é inválido.</span>
+                    <span class="error" id="email-required-reset">Campo de email
+                        é obrigatótio.</span>
                 </article>
             </section>
         </main>
@@ -93,112 +120,205 @@
             src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
         <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
-        import { getAuth, updateEmail, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
+                import { 
+                    initializeApp 
+                } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js";
+            
+                import { 
+                    getAuth, 
+                    updateEmail, 
+                    sendEmailVerification, 
+                    sendPasswordResetEmail 
+                } from "https://www.gstatic.com/firebasejs/9.17.2/firebase-auth.js";
+            
+                const firebaseConfig = {
+                    apiKey: "AIzaSyB2AHNt_PivaDLXIkNAcdp3VqTkyP3VLPM",
+                    authDomain: "pit-cake.firebaseapp.com",
+                    projectId: "pit-cake",
+                    storageBucket: "pit-cake.firebasestorage.app",
+                    messagingSenderId: "228216532358",
+                    appId: "1:228216532358:web:5488cd1695a894cbe7d007"
+                };
+            
+                const app = initializeApp(firebaseConfig);
+                const auth = getAuth(app);
+            
+                // Elementos de formulário
+                const form = {
+                    update: () => document.getElementById("emailUpdate"),
+                    reset: () => document.getElementById("passwordReset"),
+                    updateMessage: () => document.getElementById("update-verify"),
+                    successAlertUpdate: () => document.getElementById("success-alert-update"),
+                    successAlerPass: () => document.getElementById("success-alert-password"),
+                    errorAlertUpdate: () => document.getElementById("error-alert-uptade"),
+                    errorAlertPass: () => document.getElementById("error-alert-password"),
+                    emailInvalidUpdateError: () => document.getElementById("email-invalid-update"),
+                    emailInvalidResetError: () => document.getElementById("email-invalid-reset"),
+                    emailRequiredUpdateError: () => document.getElementById("email-required-update"),
+                    emailRequiredResetError: () => document.getElementById("email-required-reset"),
+                    overlay: () => document.getElementById("overlay")
+                };
+            
+                // Validação de Email
+                function validateEmail(email) {
+                    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    return regex.test(email);
+                }
+            
+                // Lógica de exibição de erros
+                function toggleErrors(inputValue, invalidErrorElement, requiredErrorElement) {
+                    if (!inputValue) {
+                        requiredErrorElement.style.display = "flex";
+                        invalidErrorElement.style.display = "none";
+                    } else {
+                        requiredErrorElement.style.display = "none";
+                        invalidErrorElement.style.display = validateEmail(inputValue) ? "none" : "flex";
+                    }
+                }
 
-        // 1. Configuração do Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyB2AHNt_PivaDLXIkNAcdp3VqTkyP3VLPM",
-            authDomain: "pit-cake.firebaseapp.com",
-            projectId: "pit-cake",
-            storageBucket: "pit-cake.firebasestorage.app",
-            messagingSenderId: "228216532358",
-            appId: "1:228216532358:web:5488cd1695a894cbe7d007"
-        };
+                function toggleUpdateErros() {
+                    toggleErrors(
+                        form.update().value, 
+                        form.emailInvalidUpdateError(), 
+                        form.emailRequiredUpdateError()
+                    );
+                }
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-
-        // 4. Evento de clique para atualizar o email
-        document.getElementById("update-email-button").addEventListener("click", () => {
-            updateEmail(auth.currentUser, form.update().value)
-            .then(() => {
-                const successAlert = form.successAlert();
-                successAlert.style.display = "flex";
-
-                setTimeout(() => {
-                    successAlert.style.display = "none";
-                }, 3000);
-                cleanInputs();
-            }).catch((error) => {
-                const errorAlert = form.updateMessageError();
-                errorAlert.style.display = "flex";
-
-                setTimeout(() => {
-                    errorAlert.style.display = "none";
-                }, 3000);
-                cleanInputs();
-            });
-        });
-
-        document.getElementById("verify-email-button").addEventListener("click", async () => {
-            sendEmailVerification(auth.currentUser)
-            .then((response) => {
-                window.location.href = "login.html";
-            }).catch((error) => {
-                alert(getErrorMessage(error));
-            });
-        });
-
-        document.getElementById("update-password-button").addEventListener("click", () => {
-            const email = form.reset().value;
-            if (!email) {
-                alert("Por favor, insira um email válido.");
-                return;
-            }
-        
-            sendPasswordResetEmail(auth, email)
-                .then(() => {
-                    const successAlert = form.successAlert();
-                    successAlert.style.display = "flex";
-
-                    setTimeout(() => {
-                        successAlert.style.display = "none";
-                    }, 3000);
-                    cleanInputs();
-                })
-                .catch((error) => {
-                    const errorAlert = form.errorAlert();
-                    errorAlert.style.display = "flex";
-
-                    setTimeout(() => {
-                        errorAlert.style.display = "none";
-                    }, 3000);
-                    cleanInputs();
+                function toggleResetErros() {
+                    toggleErrors(
+                        form.reset().value, 
+                        form.emailInvalidResetError(), 
+                        form.emailRequiredResetError()
+                    );
+                }
+            
+                function onUpdateEmail() {
+                    toggleUpdateErros();
+                }
+            
+                function onResetPassword() {
+                    toggleResetErros();
+                }
+            
+                // Torne funções globais para uso nos eventos onchange
+                window.onUpdateEmail = onUpdateEmail;
+                window.onResetPassword = onResetPassword;
+            
+                // Atualizar Email
+                document.getElementById("update-email-button").addEventListener("click", () => {
+                    const email = form.update().value;
+            
+                    if (!validateEmail(email)) {
+                        form.emailInvalidUpdateError().style.display = "flex";
+                        return;
+                    }
+            
+                    updateEmail(auth.currentUser, email)
+                        .then(() => {
+                            const successAlert = form.successAlertUpdate();
+                            form.overlay().style.display = "flex";
+                            successAlert.style.display = "flex";
+            
+                            setTimeout(() => {
+                                successAlert.style.display = "none";
+                                form.overlay().style.display = "none";
+                                window.location.href = "../index.html";
+                            }, 3000);
+            
+                            cleanInputs();
+                        })
+                        .catch((error) => {
+                            const errorAlert = form.errorAlertUpdate();
+                            errorAlert.textContent = getErrorMessage(error);
+                            errorAlert.style.display = "flex";
+            
+                            setTimeout(() => {
+                                errorAlert.style.display = "none";
+                            }, 3000);
+            
+                            cleanInputs();
+                        });
                 });
-        });
-
-        function cleanInputs() {
-            form.update().value = "";
-            form.reset().value = "";
-          }
-          
-          const form = {
-            update: () => document.getElementById("emailUpdate"),
-            reset: () => document.getElementById("passwordReset"),
-            updateMessageError: () => document.getElementById("update-verify"),
-            successAlert: () => document.getElementById("secess-alert"),
-            errorAlert: () => document.getElementById("error-alert")
-          }
-
-        function getErrorMessage(error) {
-            switch (error.code) {
-            case "auth/operation-not-allowed":
-                return "Verifique o seu email antes de atualizá-lo.";
-            case "auth/invalid-email":
-                return "O email informado é inválido.";
-            case "auth/email-already-in-use":
-                return "O email informado já está em uso.";
-            case "auth/requires-recent-login":
-                return "É necessário fazer login novamente para atualizar o email.";
-            case "auth/user-not-found":
-                return "Usuário não encontrado.";
-            case "auth/too-many-requests":
-                return "Muitas tentativas. Tente novamente mais tarde.";
-              default:
-                return "Ocorreu um erro desconhecido. Por favor, tente novamente mais tarde.";
-            }
-        }
-    </script>
+            
+                // Verificar Email
+                document.getElementById("verify-email-button").addEventListener("click", async () => {
+                    sendEmailVerification(auth.currentUser)
+                        .then(() => {
+                            const updateMessage = form.updateMessage();
+                            updateMessage.style.display = "flex";
+                            form.overlay().style.display = "flex";
+            
+                            setTimeout(() => {
+                                updateMessage.style.display = "none";
+                                form.overlay().style.display = "none";
+                                // window.location.href = "login.html";
+                            }, 3000);
+                            
+                        })
+                        .catch((error) => {
+                            alert(getErrorMessage(error));
+                        });
+                });
+            
+                // Redefinir Senha
+                document.getElementById("update-password-button").addEventListener("click", () => {
+                    const email = form.reset().value;
+            
+                    if (!validateEmail(email)) {
+                        form.emailInvalidResetError().style.display = "flex";
+                        return;
+                    }
+            
+                    sendPasswordResetEmail(auth, email)
+                        .then(() => {
+                            const successAlert = form.successAlerPass();
+                            successAlert.style.display = "flex";
+                            form.overlay().style.display = "flex";
+            
+                            setTimeout(() => {
+                                successAlert.style.display = "none";
+                                form.overlay().style.display = "none";
+                            }, 3000);
+                            cleanInputs();
+                        })
+                        .catch((error) => {
+                            const errorAlert = form.errorAlertPass();
+                            errorAlert.style.display = "flex";
+                            form.overlay().style.display = "flex";
+            
+                            setTimeout(() => {
+                                errorAlert.style.display = "none";
+                                form.overlay().style.display = "none";
+                            }, 3000);
+                            cleanInputs();
+                        });
+                });
+            
+                // Limpar inputs
+                function cleanInputs() {
+                    form.update().value = "";
+                    form.reset().value = "";
+                }
+            
+                // Mensagens de Erro Personalizadas
+                function getErrorMessage(error) {
+                    switch (error.code) {
+                        case "auth/operation-not-allowed":
+                            return "Verifique o seu email antes de atualizá-lo.";
+                        case "auth/invalid-email":
+                            return "O email informado é inválido.";
+                        case "auth/email-already-in-use":
+                            return "O email informado já está em uso.";
+                        case "auth/requires-recent-login":
+                            return "É necessário fazer login novamente para atualizar o email.";
+                        case "auth/user-not-found":
+                            return "Usuário não encontrado.";
+                        case "auth/too-many-requests":
+                            return "Muitas tentativas. Tente novamente mais tarde.";
+                        default:
+                            return "Ocorreu um erro desconhecido. Por favor, tente novamente mais tarde.";
+                    }
+                }
+            </script>
     </body>
 </html>
