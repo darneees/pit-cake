@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const favoritesKey = 'favoriteRecipes'; // Key for storing favorites in localStorage
+    const favoritesKey = 'favoriteRecipes';
     const favoritesContainer = document.getElementById('favorites-container');
     let favorites = JSON.parse(localStorage.getItem(favoritesKey)) || [];
 

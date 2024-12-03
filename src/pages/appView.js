@@ -18,7 +18,7 @@ document.addEventListener("click", function (e) {
     }
 });
 
-
+// recipes
 document.addEventListener('DOMContentLoaded', () => {
     const addRecipeButton = document.getElementById('addRecipe');
     const recipeList = document.getElementById('recipeList');
@@ -107,12 +107,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (isEditing && editingIndex !== null) {
-            // Update the existing recipe
             recipes[editingIndex] = { title, description, image, date };
             isEditing = false;
             editingIndex = null;
         } else {
-            // Add a new recipe
             recipes.push({ title, description, image, date });
         }
 
@@ -126,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('date').value = '';
 
         if (isEditing) {
-            recipeDetails.style.display = 'none'; // Close details after saving edits
+            recipeDetails.style.display = 'none';
         }
     };
 
@@ -155,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
     addRecipeButton.addEventListener('click', () => {
         addRecipeModal.style.display = 'flex';
         isEditing = false;
-        editingIndex = null; // Reset editing state
+        editingIndex = null;
     });
 
     closeAddRecipeModalButton.addEventListener('click', () => {
@@ -165,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('image').value = '';
         document.getElementById('date').value = '';
         isEditing = false;
-        editingIndex = null; // Reset editing state
+        editingIndex = null;
     });
 
     saveRecipeButton.addEventListener('click', saveRecipe);
