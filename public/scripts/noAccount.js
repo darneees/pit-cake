@@ -25,20 +25,23 @@ const close = document.getElementById('close');
 
 const image = document.getElementById('recipeImage');
 const title = document.getElementById('recipeTitle');
+const time = document.getElementById('recipeTime');
 const content = document.getElementById('recipeInfo');
 
 open.forEach((opens) => {
     opens.addEventListener('click', () => {
         const recipeTitle = opens.getAttribute('data-title');
+        const recipeTime = opens.getAttribute('data-time');
         const recipeIngredients = opens.getAttribute('data-ingredients');
         const recipePreparation = opens.getAttribute('data-preparation');
         const recipeImage = opens.getAttribute('data-image');
 
         title.innerHTML = recipeTitle;
+        time.innerHTML = recipeTime;
         content.innerHTML = `
-                            <h3>Ingredientes:</h3>
+                            <h3 class="">Ingredientes:</h3>
                             ${recipeIngredients}
-                            <h3>Modo de preparo:</h3>
+                            <h3 class="">Modo de preparo:</h3>
                             ${recipePreparation}`;
         image.src = recipeImage;
 
@@ -102,8 +105,15 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("click", function (e) {
     const openFilter = document.getElementById("openFilter");
     const filterOptions = document.getElementById("filtersOptions");
+    const filterLinks = document.querySelectorAll(".filter-btn");
 
     if (e.target !== openFilter && !openFilter.contains(e.target) && e.target !== filterOptions && !filterOptions.contains(e.target)) {
         filterOptions.style.display = 'none';
     }
+
+    filterLinks.forEach(filterLink => {
+        filterLink.addEventListener('click', () => {
+            filterOptions.style.display = 'none';
+        });
+    });
 });
