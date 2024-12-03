@@ -67,298 +67,325 @@
             </button>
 
             <!-- lista de receitas -->
-            <section class="main-content">
-                <article class="card">
-                    <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdMOZ188Qz9-9WRpYFYVESapKMES7k2xPxxg&s"
-                        alt="iamgem de um cupcake sabor Café">
-                    <div class="info">
-                        <h3>Cupcake de Café</h3>
-                        <button class="view-recipe open"
-                            data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdMOZ188Qz9-9WRpYFYVESapKMES7k2xPxxg&s"
-                            data-title="Cupcake de Café"
-                            data-ingredients="
-                            <ul>
-                                <li>- 1 xícara de farinha de trigo</li>
-                                <li>- 1/2 xícara de açúcar</li>
-                                <li>- 1/2 xícara de café coado</li>
-                                <li>- 1/4 xícara de óleo</li>
-                                <li>- 1 ovo</li>
-                                <li>- 1 colher de chá de fermento</li>
-                            </ul>"
-                            data-preparation="
-                            <p>Misture o ovo, açúcar e café.</p>
-                            <p>Adicione o óleo e misture bem.</p>
-                            <p>Incorpore a farinha e o fermento.</p>
-                            <p>Distribua nas forminhas e asse por 20 minutos.</p>">
-                            <ion-icon name="expand-outline"></ion-icon>
-                        </button>
-                    </div>
-                </article>
+            <section class="main-content" id="filterable-cards">
+                <section id="filter-buttons">
+                    <label class="filter-search">
+                        <input type="text" id="search-input" placeholder="Nome da receita" autocomplete="off">
+                    </label>
 
-                <article class="card">
-                    <img
-                        src="https://guiadacozinha.com.br/wp-content/uploads/2019/10/cupcake-de-abobora-com-coco-50102.jpg"
-                        alt="iamgem de um cupcake sabor Abóbora">
-                    <div class="info">
-                        <h3>Cupcake de Abóbora</h3>
-                        <button class="view-recipe open"
-                            data-image="https://guiadacozinha.com.br/wp-content/uploads/2019/10/cupcake-de-abobora-com-coco-50102.jpg"
-                            data-title="Cupcake de Abóbora"
-                            data-ingredients="
-                            <ul>
-                                <li>- 1 xícara de farinha de trigo</li>
-                                <li>- 1/2 xícara de açúcar mascavo</li>
-                                <li>- 1/2 xícara de purê de abóbora</li>
-                                <li>- 1/4 xícara de óleo</li>
-                                <li>- 1 ovo</li>
-                                <li>- 1 colher de chá de canela</li>
-                                <li>- 1 colher de chá de noz-moscada</li>
-                                <li>- 1 colher de chá de fermento</li>
-                            </ul>"
-                            data-preparation="
-                            <p>Misture o ovo, açúcar e purê de abóbora.</p>
-                            <p>Adicione óleo e especiarias.</p>
-                            <p>Incorpore a farinha e o fermento.</p>
-                            <p>Distribua nas forminhas e asse por 20 minutos.</p>">
-                            <ion-icon name="expand-outline"></ion-icon>
-                        </button>
-                    </div>
-                </article>
+                    <button class="more-filter" id="openFilter">
+                        <ion-icon name="options-outline"></ion-icon>
+                    </button>
+                    
+                    <article class="filters" id="filtersOptions">
+                        <button class="active filter-btn"
+                            data-filter="Todas">Todas<ion-icon
+                                name="list-outline"></ion-icon></button>
+                        <button
+                            data-filter="Oleaginosas" class="filter-btn">Oleaginosas<ion-icon
+                                name="leaf-outline"></ion-icon></button>
+                        <button
+                            data-filter="C/Chocolate" class="filter-btn">C/Chocolate<ion-icon
+                                name="cafe-outline"></ion-icon></button>
+                        <button
+                            data-filter="C/Fruta" class="filter-btn">C/Fruta<ion-icon
+                                name="nutrition-outline"></ion-icon></button>
+                    </article>
+                </section>
 
-                <article class="card">
-                    <img
-                        src="https://assets-eu-01.kc-usercontent.com/559bb7d3-88a4-01c1-79a3-dd4d5b2d2bb0/b3a5afa1-f5e5-4679-8470-26f06f14add7/Nutella%20Cupcakes%20-%20Horizontal-6.jpg?w=3840&q=85&auto=format&lossless=1"
-                        alt="iamgem de um cupcake sabor Nutella">
-                    <div class="info">
-                        <h3>Cupcake de Nutella</h3>
-                        <button class="view-recipe open"
-                            data-title="Cupcake de Nutella"
-                            data-image="https://assets-eu-01.kc-usercontent.com/559bb7d3-88a4-01c1-79a3-dd4d5b2d2bb0/b3a5afa1-f5e5-4679-8470-26f06f14add7/Nutella%20Cupcakes%20-%20Horizontal-6.jpg?w=3840&q=85&auto=format&lossless=1"
-                            data-ingredients="
-                            <ul>
-                                <li>- 1 xícara de farinha de trigo</li>
-                                <li>- 1/2 xícara de açúcar</li>
-                                <li>- 1/2 xícara de leite</li>
-                                <li>- 1/4 xícara de óleo</li>
-                                <li>- 1 ovo</li>
-                                <li>- 1 colheres de sopa de Nutella</li>
-                                <li>- 1 colher de chá de fermento</li>
-                            </ul>"
-                            data-preparation="
-                            <p>Misture o ovo, açúcar e Nutella.</p>
-                            <p>Adicione óleo e especiarias.</p>
-                            <p>Incorpore a farinha e o fermento.</p>
-                            <p>Distribua nas forminhas e asse por 20 minutos.</p>">
-                            <ion-icon name="expand-outline"></ion-icon>
-                        </button>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <img
-                        src="https://guiadacozinha.com.br/wp-content/uploads/2019/10/cupcake-leite-ninho-decorado.jpg"
-                        alt="iamgem de um cupcake sabor Leite Ninho">
-                    <div class="info">
-                        <h3>Cupcake de Leite Ninho</h3>
-                        <button class="view-recipe open"
-                            data-title="Cupcake de Leite Ninho"
-                            data-image="https://guiadacozinha.com.br/wp-content/uploads/2019/10/cupcake-leite-ninho-decorado.jpg"
-                            data-ingredients="
-                            <ul>
-                                <li>- 1 xícara de farinha de trigo</li>
-                                <li>- 1/2 xícara de açúcar</li>
-                                <li>- 1/2 xícara de leite</li>
-                                <li>- 1/4 xícara de óleo</li>
-                                <li>- 1 ovo</li>
-                                <li>- 3 colheres de sopa de leite de pó</li>
-                                <li>- 1 colher de chá de fermento</li>
-                            </ul>"
-                            data-preparation="
-                            <p>Misture o ovo, açúcar e leite.</p>
-                            <p>Adicione óleo e o leite em pó.</p>
-                            <p>Incorpore a farinha e o fermento.</p>
-                            <p>Distribua nas forminhas e asse por 20 minutos.</p>">
-                            <ion-icon name="expand-outline"></ion-icon>
-                        </button>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <img
-                        src="https://confeitariadeds.com.br/wp-content/uploads/2021/07/PicsArt_06-09-04.34.00-scaled.jpg"
-                        alt="iamgem de um cupcake sabor Abacaxi c/Coco">
-                    <div class="info">
-                        <h3>Cupcake de Abacaxi com Coco</h3>
-                        <button class="view-recipe open"
-                            data-title="Cupcake de Abacaxi c/Coco"
-                            data-image="https://confeitariadeds.com.br/wp-content/uploads/2021/07/PicsArt_06-09-04.34.00-scaled.jpg"
-                            data-ingredients="
-                            <ul>
-                                <li>- 1 xícara de farinha de trigo</li>
-                                <li>- 1/2 xícara de açúcar</li>
-                                <li>- 1/2 xícara de leite</li>
-                                <li>- 1/4 xícara de óleo</li>
-                                <li>- 1 ovo</li>
-                                <li>- 1/2 xícara de abacaxi picado</li>
-                                <li>- 1 colher de chá de fermento</li>
-                            </ul>"
-                            data-preparation="
-                            <p>Misture o ovo, açúcar, leite de coco e oleo.</p>
-                            <p>Adicione a farinha e o fermento, mexendo bem.</p>
-                            <p>Acrescente o abacaxi picado.</p>
-                            <p>Distribua nas forminhas e asse por 20 minutos.</p>">
-                            <ion-icon name="expand-outline"></ion-icon>
-                        </button>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <img
-                        src="https://cakebrasil.com/wp-content/uploads/2017/07/Cupcake-de-Laranja-300x300.jpg"
-                        alt="iamgem de um cupcake sabor Laranja">
-                    <div class="info">
-                        <h3 data-title="Cupcake de Laranja">
-                            Cupcake de Laranja
-                        </h3>
-                        <button class="view-recipe open"
-                            data-title="Cupcake de Laranja"
-                            data-image="https://cakebrasil.com/wp-content/uploads/2017/07/Cupcake-de-Laranja-300x300.jpg"
-                            data-ingredients="
-                            <ul>
-                                <li>- 1 xícara de farinha de trigo</li>
-                                <li>- 1/2 xícara de açúcar</li>
-                                <li>- 1/2 xícara de leite</li>
-                                <li>- 1/4 xícara de óleo</li>
-                                <li>- 1 ovo</li>
-                                <li>- 1/2 xícara de laranja picada</li>
-                                <li>- 1 colher de chá de fermento</li>
-                            </ul>"
-                            data-preparation="
-                            <p>Misture o ovo, açúcar, leite de coco e oleo.</p>
-                            <p>Adicione a farinha e o fermento, mexendo bem.</p>
-                            <p>Acrescente a laranja.</p>
-                            <p>Distribua nas forminhas e asse por 20 minutos.</p>">
-                            <ion-icon name="expand-outline"></ion-icon>
-                        </button>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8OwQpcTDPjsVGAtOhrJmYsrFEZt8ttqXVFg&s"
-                        alt="iamgem de um cupcake sabor Nutella">
-                    <div class="info">
-                        <h3>Cupcake de Maracujá</h3>
-                        <button class="view-recipe open"
-                            data-title="Cupcake de Maracujá"
-                            data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8OwQpcTDPjsVGAtOhrJmYsrFEZt8ttqXVFg&s"
-                            data-ingredients="
-                            <ul>
-                                <li>- 1 xícara de farinha de trigo</li>
-                                <li>- 1/2 xícara de açúcar</li>
-                                <li>- 1/2 xícara de leite</li>
-                                <li>- 1/4 xícara de óleo</li>
-                                <li>- 1 ovo</li>
-                                <li>- 1 colheres de sopa de Maracujá</li>
-                                <li>- 1 colher de chá de fermento</li>
-                            </ul>"
-                            data-preparation="
-                            <p>Misture o ovo, açúcar e Maracujá.</p>
-                            <p>Adicione óleo e especiarias.</p>
-                            <p>Incorpore a farinha e o fermento.</p>
-                            <p>Distribua nas forminhas e asse por 20 minutos.</p>">
-                            <ion-icon name="expand-outline"></ion-icon>
-                        </button>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkl-g1gnA14OPCyX5UM_aW2dA41EJi0Gemgg&s"
-                        alt="iamgem de um cupcake sabor Leite Ninho">
-                    <div class="info">
-                        <h3>Cupcake de Banana com Canela</h3>
-                        <button class="view-recipe open"
-                            data-title="Cupcake de Banana com Canela"
-                            data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkl-g1gnA14OPCyX5UM_aW2dA41EJi0Gemgg&s"
-                            data-ingredients="
-                            <ul>
-                                <li>- 1 xícara de farinha de trigo</li>
-                                <li>- 1/2 xícara de açúcar</li>
-                                <li>- 1/2 xícara de leite</li>
-                                <li>- 1/4 xícara de óleo</li>
-                                <li>- 1 ovo</li>
-                                <li>- 3 colheres de sopa de canela</li>
-                                <li>- 1 colher de chá de fermento</li>
-                            </ul>"
-                            data-preparation="
-                            <p>Misture o ovo, açúcar e leite.</p>
-                            <p>Adicione a Banana.</p>
-                            <p>Incorpore a farinha e o fermento.</p>
-                            <p>Distribua nas forminhas e asse por 20 minutos.</p>">
-                            <ion-icon name="expand-outline"></ion-icon>
-                        </button>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <img
-                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJKJqBsIxEXxsjEHge0Llh4masGNxpCwjtqw&s"
-                        alt="iamgem de um cupcake sabor Abacaxi c/Coco">
-                    <div class="info">
-                        <h3>Cupcake de Baunilha com Frutas Vermelhas</h3>
-                        <button class="view-recipe open"
-                            data-title="Cupcake de Baunilha com Frutas Vermelhas"
-                            data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJKJqBsIxEXxsjEHge0Llh4masGNxpCwjtqw&s"
-                            data-ingredients="
-                            <ul>
-                                <li>- 1 xícara de farinha de trigo</li>
-                                <li>- 1/2 xícara de açúcar</li>
-                                <li>- 1/2 xícara de leite</li>
-                                <li>- 1/4 xícara de óleo</li>
-                                <li>- 1 ovo</li>
-                                <li>- 2 colher de Baunilha</li>
-                                <li>- 1 colher de chá de fermento</li>
-                            </ul>"
-                            data-preparation="
-                            <p>Misture o ovo, açúcar, leite de colher e oleo.</p>
-                            <p>Adicione a farinha e o fermento, mexendo bem.</p>
-                            <p>Acrescente o Frutas Vermelhas picado.</p>
-                            <p>Distribua nas forminhas e asse por 20 minutos.</p>">
-                            <ion-icon name="expand-outline"></ion-icon>
-                        </button>
-                    </div>
-                </article>
-
-                <article class="card">
-                    <img
-                        src="https://www.mashed.com/img/gallery/the-best-chocolate-peanut-butter-cupcakes-ever/l-intro-1617221045.jpg"
-                        alt="iamgem de um cupcake sabor Laranja">
-                    <div class="info">
-                        <h3>
-                            Cupcake de Amendoim
-                        </h3>
-                        <button class="view-recipe open"
-                            data-title="Cupcake de Amendoim"
-                            data-image="https://www.mashed.com/img/gallery/the-best-chocolate-peanut-butter-cupcakes-ever/l-intro-1617221045.jpg"
-                            data-ingredients="
-                            <ul>
-                                <li>- 1 xícara de farinha de trigo</li>
-                                <li>- 1/2 xícara de açúcar</li>
-                                <li>- 1/2 xícara de leite</li>
-                                <li>- 1/4 xícara de óleo</li>
-                                <li>- 1 ovo</li>
-                                <li>- 3 Amendoim picada</li>
-                            </ul>"
-                            data-preparation="
-                            <p>Adicione a farinha e o fermento, mexendo bem.</p>
-                            <p>Acrescente a Amendoim.</p>
-                            <p>Distribua nas forminhas e asse por 20 minutos.</p>">
-                            <ion-icon name="expand-outline"></ion-icon>
-                        </button>
-                    </div>
-                </article>
+                <section class="main_container">
+                    <article class="card" data-name>
+                        <img
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdMOZ188Qz9-9WRpYFYVESapKMES7k2xPxxg&s"
+                            alt="iamgem de um cupcake sabor Café">
+                        <div class="info">
+                            <h3>Cupcake de Café</h3>
+                            <button class="view-recipe open"
+                                data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdMOZ188Qz9-9WRpYFYVESapKMES7k2xPxxg&s"
+                                data-title="Cupcake de Café"
+                                data-ingredients="
+                                <ul>
+                                    <li>- 1 xícara de farinha de trigo</li>
+                                    <li>- 1/2 xícara de açúcar</li>
+                                    <li>- 1/2 xícara de café coado</li>
+                                    <li>- 1/4 xícara de óleo</li>
+                                    <li>- 1 ovo</li>
+                                    <li>- 1 colher de chá de fermento</li>
+                                </ul>"
+                                data-preparation="
+                                <p>Misture o ovo, açúcar e café.</p>
+                                <p>Adicione o óleo e misture bem.</p>
+                                <p>Incorpore a farinha e o fermento.</p>
+                                <p>Distribua nas forminhas e asse por 20 minutos.</p>">
+                                <ion-icon name="expand-outline"></ion-icon>
+                            </button>
+                        </div>
+                    </article>
+    
+                    <article class="card" data-name="C/Fruta">
+                        <img
+                            src="https://guiadacozinha.com.br/wp-content/uploads/2019/10/cupcake-de-abobora-com-coco-50102.jpg"
+                            alt="iamgem de um cupcake sabor Abóbora">
+                        <div class="info">
+                            <h3>Cupcake de Abóbora</h3>
+                            <button class="view-recipe open"
+                                data-image="https://guiadacozinha.com.br/wp-content/uploads/2019/10/cupcake-de-abobora-com-coco-50102.jpg"
+                                data-title="Cupcake de Abóbora"
+                                data-ingredients="
+                                <ul>
+                                    <li>- 1 xícara de farinha de trigo</li>
+                                    <li>- 1/2 xícara de açúcar mascavo</li>
+                                    <li>- 1/2 xícara de purê de abóbora</li>
+                                    <li>- 1/4 xícara de óleo</li>
+                                    <li>- 1 ovo</li>
+                                    <li>- 1 colher de chá de canela</li>
+                                    <li>- 1 colher de chá de noz-moscada</li>
+                                    <li>- 1 colher de chá de fermento</li>
+                                </ul>"
+                                data-preparation="
+                                <p>Misture o ovo, açúcar e purê de abóbora.</p>
+                                <p>Adicione óleo e especiarias.</p>
+                                <p>Incorpore a farinha e o fermento.</p>
+                                <p>Distribua nas forminhas e asse por 20 minutos.</p>">
+                                <ion-icon name="expand-outline"></ion-icon>
+                            </button>
+                        </div>
+                    </article>
+    
+                    <article class="card" data-name="C/Chocolate">
+                        <img
+                            src="https://assets-eu-01.kc-usercontent.com/559bb7d3-88a4-01c1-79a3-dd4d5b2d2bb0/b3a5afa1-f5e5-4679-8470-26f06f14add7/Nutella%20Cupcakes%20-%20Horizontal-6.jpg?w=3840&q=85&auto=format&lossless=1"
+                            alt="iamgem de um cupcake sabor Nutella">
+                        <div class="info">
+                            <h3>Cupcake de Nutella</h3>
+                            <button class="view-recipe open"
+                                data-title="Cupcake de Nutella"
+                                data-image="https://assets-eu-01.kc-usercontent.com/559bb7d3-88a4-01c1-79a3-dd4d5b2d2bb0/b3a5afa1-f5e5-4679-8470-26f06f14add7/Nutella%20Cupcakes%20-%20Horizontal-6.jpg?w=3840&q=85&auto=format&lossless=1"
+                                data-ingredients="
+                                <ul>
+                                    <li>- 1 xícara de farinha de trigo</li>
+                                    <li>- 1/2 xícara de açúcar</li>
+                                    <li>- 1/2 xícara de leite</li>
+                                    <li>- 1/4 xícara de óleo</li>
+                                    <li>- 1 ovo</li>
+                                    <li>- 1 colheres de sopa de Nutella</li>
+                                    <li>- 1 colher de chá de fermento</li>
+                                </ul>"
+                                data-preparation="
+                                <p>Misture o ovo, açúcar e Nutella.</p>
+                                <p>Adicione óleo e especiarias.</p>
+                                <p>Incorpore a farinha e o fermento.</p>
+                                <p>Distribua nas forminhas e asse por 20 minutos.</p>">
+                                <ion-icon name="expand-outline"></ion-icon>
+                            </button>
+                        </div>
+                    </article>
+    
+                    <article class="card" data-name="C/Açucar">
+                        <img
+                            src="https://guiadacozinha.com.br/wp-content/uploads/2019/10/cupcake-leite-ninho-decorado.jpg"
+                            alt="iamgem de um cupcake sabor Leite Ninho">
+                        <div class="info">
+                            <h3>Cupcake de Leite Ninho</h3>
+                            <button class="view-recipe open"
+                                data-title="Cupcake de Leite Ninho"
+                                data-image="https://guiadacozinha.com.br/wp-content/uploads/2019/10/cupcake-leite-ninho-decorado.jpg"
+                                data-ingredients="
+                                <ul>
+                                    <li>- 1 xícara de farinha de trigo</li>
+                                    <li>- 1/2 xícara de açúcar</li>
+                                    <li>- 1/2 xícara de leite</li>
+                                    <li>- 1/4 xícara de óleo</li>
+                                    <li>- 1 ovo</li>
+                                    <li>- 3 colheres de sopa de leite de pó</li>
+                                    <li>- 1 colher de chá de fermento</li>
+                                </ul>"
+                                data-preparation="
+                                <p>Misture o ovo, açúcar e leite.</p>
+                                <p>Adicione óleo e o leite em pó.</p>
+                                <p>Incorpore a farinha e o fermento.</p>
+                                <p>Distribua nas forminhas e asse por 20 minutos.</p>">
+                                <ion-icon name="expand-outline"></ion-icon>
+                            </button>
+                        </div>
+                    </article>
+    
+                    <article class="card" data-name="C/Fruta">
+                        <img
+                            src="https://confeitariadeds.com.br/wp-content/uploads/2021/07/PicsArt_06-09-04.34.00-scaled.jpg"
+                            alt="iamgem de um cupcake sabor Abacaxi c/Coco">
+                        <div class="info">
+                            <h3>Cupcake de Abacaxi com Coco</h3>
+                            <button class="view-recipe open"
+                                data-title="Cupcake de Abacaxi c/Coco"
+                                data-image="https://confeitariadeds.com.br/wp-content/uploads/2021/07/PicsArt_06-09-04.34.00-scaled.jpg"
+                                data-ingredients="
+                                <ul>
+                                    <li>- 1 xícara de farinha de trigo</li>
+                                    <li>- 1/2 xícara de açúcar</li>
+                                    <li>- 1/2 xícara de leite</li>
+                                    <li>- 1/4 xícara de óleo</li>
+                                    <li>- 1 ovo</li>
+                                    <li>- 1/2 xícara de abacaxi picado</li>
+                                    <li>- 1 colher de chá de fermento</li>
+                                </ul>"
+                                data-preparation="
+                                <p>Misture o ovo, açúcar, leite de coco e oleo.</p>
+                                <p>Adicione a farinha e o fermento, mexendo bem.</p>
+                                <p>Acrescente o abacaxi picado.</p>
+                                <p>Distribua nas forminhas e asse por 20 minutos.</p>">
+                                <ion-icon name="expand-outline"></ion-icon>
+                            </button>
+                        </div>
+                    </article>
+    
+                    <article class="card" data-name="C/Fruta">
+                        <img
+                            src="https://cakebrasil.com/wp-content/uploads/2017/07/Cupcake-de-Laranja-300x300.jpg"
+                            alt="iamgem de um cupcake sabor Laranja">
+                        <div class="info">
+                            <h3 data-title="Cupcake de Laranja">
+                                Cupcake de Laranja
+                            </h3>
+                            <button class="view-recipe open"
+                                data-title="Cupcake de Laranja"
+                                data-image="https://cakebrasil.com/wp-content/uploads/2017/07/Cupcake-de-Laranja-300x300.jpg"
+                                data-ingredients="
+                                <ul>
+                                    <li>- 1 xícara de farinha de trigo</li>
+                                    <li>- 1/2 xícara de açúcar</li>
+                                    <li>- 1/2 xícara de leite</li>
+                                    <li>- 1/4 xícara de óleo</li>
+                                    <li>- 1 ovo</li>
+                                    <li>- 1/2 xícara de laranja picada</li>
+                                    <li>- 1 colher de chá de fermento</li>
+                                </ul>"
+                                data-preparation="
+                                <p>Misture o ovo, açúcar, leite de coco e oleo.</p>
+                                <p>Adicione a farinha e o fermento, mexendo bem.</p>
+                                <p>Acrescente a laranja.</p>
+                                <p>Distribua nas forminhas e asse por 20 minutos.</p>">
+                                <ion-icon name="expand-outline"></ion-icon>
+                            </button>
+                        </div>
+                    </article>
+    
+                    <article class="card" data-name="C/Fruta">
+                        <img
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8OwQpcTDPjsVGAtOhrJmYsrFEZt8ttqXVFg&s"
+                            alt="iamgem de um cupcake sabor Nutella">
+                        <div class="info">
+                            <h3>Cupcake de Maracujá</h3>
+                            <button class="view-recipe open"
+                                data-title="Cupcake de Maracujá"
+                                data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8OwQpcTDPjsVGAtOhrJmYsrFEZt8ttqXVFg&s"
+                                data-ingredients="
+                                <ul>
+                                    <li>- 1 xícara de farinha de trigo</li>
+                                    <li>- 1/2 xícara de açúcar</li>
+                                    <li>- 1/2 xícara de leite</li>
+                                    <li>- 1/4 xícara de óleo</li>
+                                    <li>- 1 ovo</li>
+                                    <li>- 1 colheres de sopa de Maracujá</li>
+                                    <li>- 1 colher de chá de fermento</li>
+                                </ul>"
+                                data-preparation="
+                                <p>Misture o ovo, açúcar e Maracujá.</p>
+                                <p>Adicione óleo e especiarias.</p>
+                                <p>Incorpore a farinha e o fermento.</p>
+                                <p>Distribua nas forminhas e asse por 20 minutos.</p>">
+                                <ion-icon name="expand-outline"></ion-icon>
+                            </button>
+                        </div>
+                    </article>
+    
+                    <article class="card" data-name="C/Fruta">
+                        <img
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkl-g1gnA14OPCyX5UM_aW2dA41EJi0Gemgg&s"
+                            alt="iamgem de um cupcake sabor Leite Ninho">
+                        <div class="info">
+                            <h3>Cupcake de Banana com Canela</h3>
+                            <button class="view-recipe open"
+                                data-title="Cupcake de Banana com Canela"
+                                data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkl-g1gnA14OPCyX5UM_aW2dA41EJi0Gemgg&s"
+                                data-ingredients="
+                                <ul>
+                                    <li>- 1 xícara de farinha de trigo</li>
+                                    <li>- 1/2 xícara de açúcar</li>
+                                    <li>- 1/2 xícara de leite</li>
+                                    <li>- 1/4 xícara de óleo</li>
+                                    <li>- 1 ovo</li>
+                                    <li>- 3 colheres de sopa de canela</li>
+                                    <li>- 1 colher de chá de fermento</li>
+                                </ul>"
+                                data-preparation="
+                                <p>Misture o ovo, açúcar e leite.</p>
+                                <p>Adicione a Banana.</p>
+                                <p>Incorpore a farinha e o fermento.</p>
+                                <p>Distribua nas forminhas e asse por 20 minutos.</p>">
+                                <ion-icon name="expand-outline"></ion-icon>
+                            </button>
+                        </div>
+                    </article>
+    
+                    <article class="card" data-name="C/Fruta">
+                        <img
+                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJKJqBsIxEXxsjEHge0Llh4masGNxpCwjtqw&s"
+                            alt="iamgem de um cupcake sabor Abacaxi c/Coco">
+                        <div class="info">
+                            <h3>Cupcake de Baunilha com Frutas Vermelhas</h3>
+                            <button class="view-recipe open"
+                                data-title="Cupcake de Baunilha com Frutas Vermelhas"
+                                data-image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJKJqBsIxEXxsjEHge0Llh4masGNxpCwjtqw&s"
+                                data-ingredients="
+                                <ul>
+                                    <li>- 1 xícara de farinha de trigo</li>
+                                    <li>- 1/2 xícara de açúcar</li>
+                                    <li>- 1/2 xícara de leite</li>
+                                    <li>- 1/4 xícara de óleo</li>
+                                    <li>- 1 ovo</li>
+                                    <li>- 2 colher de Baunilha</li>
+                                    <li>- 1 colher de chá de fermento</li>
+                                </ul>"
+                                data-preparation="
+                                <p>Misture o ovo, açúcar, leite de colher e oleo.</p>
+                                <p>Adicione a farinha e o fermento, mexendo bem.</p>
+                                <p>Acrescente o Frutas Vermelhas picado.</p>
+                                <p>Distribua nas forminhas e asse por 20 minutos.</p>">
+                                <ion-icon name="expand-outline"></ion-icon>
+                            </button>
+                        </div>
+                    </article>
+    
+                    <article class="card" data-name="Oleaginosas">
+                        <img
+                            src="https://www.mashed.com/img/gallery/the-best-chocolate-peanut-butter-cupcakes-ever/l-intro-1617221045.jpg"
+                            alt="iamgem de um cupcake sabor Laranja">
+                        <div class="info">
+                            <h3>
+                                Cupcake de Amendoim
+                            </h3>
+                            <button class="view-recipe open"
+                                data-title="Cupcake de Amendoim"
+                                data-image="https://www.mashed.com/img/gallery/the-best-chocolate-peanut-butter-cupcakes-ever/l-intro-1617221045.jpg"
+                                data-ingredients="
+                                <ul>
+                                    <li>- 1 xícara de farinha de trigo</li>
+                                    <li>- 1/2 xícara de açúcar</li>
+                                    <li>- 1/2 xícara de leite</li>
+                                    <li>- 1/4 xícara de óleo</li>
+                                    <li>- 1 ovo</li>
+                                    <li>- 3 Amendoim picada</li>
+                                </ul>"
+                                data-preparation="
+                                <p>Adicione a farinha e o fermento, mexendo bem.</p>
+                                <p>Acrescente a Amendoim.</p>
+                                <p>Distribua nas forminhas e asse por 20 minutos.</p>">
+                                <ion-icon name="expand-outline"></ion-icon>
+                            </button>
+                        </div>
+                    </article>
+                </section>
             </section>
         </main>
 
